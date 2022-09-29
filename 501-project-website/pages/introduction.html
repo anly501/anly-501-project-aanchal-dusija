@@ -1,0 +1,195 @@
+<HTML>
+	<head>
+	<body style="background-color:#F6F5F5;">
+	
+	<style>
+	
+	body {
+		font-family: verdana;
+		background-color : #131111 ;
+		position : relative
+		style : #232435;
+	
+	}
+	
+	
+	.navbar{
+		top:0;
+		position: fixed;
+		width : 100%;
+		
+	}
+	
+	.topnav {
+	  overflow: hidden;
+	  background-color: #1F1A40;
+	}
+	
+	.topnav a {
+	  float: left;
+	  color: #BBD8F2;
+	  text-align: center;
+	  padding: 12px 14px;
+	  text-decoration: none;
+	  font-size: 17px;
+	}
+	
+	.topnav a:hover {
+	  background-color: #111314;
+	  color: black;
+	}
+	
+	.topnav a.active {
+	  background-color: #FFFFFF;
+	  color: white;
+	}
+	
+	.headerLogo{
+	  top:200px;
+	  height:250px;
+	  width:200px;
+	  line-height:200px;
+	
+	  overflow:hidden;
+	 
+	  /* <!-- top:200px; height:900px; width:1450px; line-height:500px --> */
+	}
+	.center {
+	  display: block;
+	  margin-left: auto;
+	  margin-right: auto;
+	  width: 100%;
+	}
+	
+	h1 {text-align: left;}
+	p {text-align: left;}
+	div {text-align: left;}
+	
+	
+	ul {
+		list-style-type: none;
+		margin: 0;
+		padding: 0;
+		overflow: hidden;
+		background-color: #34495E;
+		max-width:1500px;
+	}
+	
+	li {
+		float: left;
+	}
+	
+	li a, .dropbtn {
+		display: inline-block;
+		color: white;
+		text-align: center;
+		padding: 14px 16px;
+		text-decoration: none;
+	}
+	
+	li a:hover, .dropdown:hover .dropbtn {
+		background-color: grey;
+	}
+	
+	li.dropdown {
+		display: inline-block;
+	}
+	
+	.dropdown-content {
+		display: none;
+		position: absolute;
+		background-color: white;
+		min-width: 160px;
+		
+		
+	}
+	
+	.dropdown-content a {
+		color: black;
+		padding: 12px 16px;
+		text-decoration: none;
+		display: block;
+		text-align: left;
+		
+	}
+	
+	
+	
+	.dropdown:hover .dropdown-content {
+		display: block;
+		opacity: 1;
+	}
+	td {
+		padding: 5px;
+		text-align: left;
+		width: 500px;
+	}
+	
+	tr{
+	   padding: 0px;
+	   text-align: top;
+	   background-color:#ffffff
+	}
+	
+	img:hover {
+	  opacity: 1;
+	}
+	
+	</style>
+	
+	<div class ="navbar"></div>
+	<ul>
+		<!-- link back to homepage -->
+		<li><a href="../index.html">About me</a></li>
+		
+		<!-- tab without dropdown  -->
+		<li><a href="../pages/introduction.html">Introduction</a></li>
+		<li><a href="../pages/DataGathering.html">Data Gathering</a></li>
+		<li><a href="https://github.com/anly501/anly-501-project-aanchal-dusija">Data</a></li>
+		<li><a href="https://github.com/anly501/anly-501-project-aanchal-dusija">Code</a></li>
+		<li><a href="../pages/DataCleaning.html">Data Cleaning</a></li>
+		<li><a href="../pages/Exploring Data.html">Exploring Data</a></li>
+		<li><a href="../pages/xyz.html">Clustering</a></li>
+		<li><a href="../pages/xyz.html">ARM and Networking</a></li>
+		<li><a href="../pages/xyz.html">Decision Trees</a></li>
+		<li><a href="../pages/xyz.html">Naive Bayes</a></li>
+		<li><a href="../pages/xyz.html">SVM</a></li>
+		<li><a href="../pages/xyz.html">Conclusions</a></li>
+		
+	</ul>
+
+    <div class="container-fluid main-container">
+    
+    <div id="header">
+    
+    </div>
+    
+    
+    <div id="introduction" class="section level1">
+    <h1 style= color:black>Introduction</h1>
+    <p>Using Data Science in the fashion industry. 
+
+      E-commerce systems for many large fashion firms produce a ton of data that data scientists can use. To comprehend the needs of the customer and analyze their behavior, we apply data science. This is essential for the fashion sector since firms may boost sales with better services that anticipate customer wants and assist clients in finding what they are looking for. <br> <br> 
+     
+      <img src="https://image.ibb.co/np9Q2c/image10.png" width="500" height="333"> <br> <br>
+    
+      Data science is also used to anticipate a product's lifespan on a website and inform clients of how likely it is that the items will run out soon. This aids the company in forecasting, which is essential for any business and involves determining how many outfits to make and send to a specific market. Big fashion companies will have information on their sales both online and in physical locations, and this information may be utilized to forecast product demand, calculate stock requirements, and set prices.  <br> <br>
+    
+      <img src="https://th.bing.com/th/id/OIP.ZLCgyHJqFvY9P3U4yhGjPgHaDu?pid=ImgDet&rs=1" width="500" height="333"> <br> <br>
+    
+      It may also forecast a customer's apparel sizes for numerous well-known brands: Since most products are returned due to fit, it is highly helpful to build a model that can estimate what size you should be for a specific brand using data on people's measurements and the sizes they wear in each. With advancements in data analytics and machine learning, fashion brands have become more aware of the value of utilizing AI based software to create efficient fashion design, merchandising and marketing strategies. <br> <br>
+    
+      <h1 style="font-size:20px;"> The goal of the portfolio is to provide answers to the following questions: </h1>
+      1.	What is the color preference for customers in apparel with changing seasons? <br> <br>
+      2.	How many products to provide in apparel based on gender? <br> <br>
+      3.	Are styles on runaway used as day-to-day clothing by customers? <br> <br>
+      4.	How to set garment pricing based on brands? <br> <br>
+      5.	 How can apparel be organized in online and offline stores? <br> <br>
+      6.	How do brands stay relevant with fast fashion in the digital age? <br> <br>
+      7.	How is social media correlated with fashion? <br> <br>
+      8.	Can we predict apparels for customers based on their past purchases? <br> <br>
+      9.	Are apparel styles in different countries same or different? <br> <br>
+      10.	When is the best time to keep sales for brands? <br> <br>
+      
+      </p>
+    </div>
