@@ -11,7 +11,8 @@ library(ggplot2)
 
 getwd()
 #READING MEN'S CLOTHING DATA
-m_df_1 <- read.csv("/Users/aanchaldusija/Downloads/Macy_menclothing.csv", sep = ",", header = TRUE)
+setwd("/Users/aanchaldusija/Desktop/Georgetown University/ANLY 501/Homework/anly-501-project-aanchal-dusija/501-project-website/pages")
+m_df_1 <- read.csv("Macy_menclothing.csv", sep = ",", header = TRUE)
 
 # DIMENSIONS OF THE DATA
 dim(m_df_1)
@@ -65,7 +66,7 @@ avg_price <- rowMeans(m_price[,1:10],na.rm = TRUE)
 
 # STOCK DATA FRAME
 m_stock<-m_df_3[grepl("sizes", colnames(m_df_3))]
-total_stock <- rowMeans(m_stock, na.rm = TRUE)
+total_stock <- rowSums(m_stock, na.rm = TRUE)
 
 # COLOUR 0 DATA FRAME
 m_color0 <- m_df_3[grepl("colors.0", colnames(m_df_3))]
@@ -107,7 +108,7 @@ m_df_5$gender = "Men"
 
 
 #READING WOMEN'S CLOTHING DATA
-w_df_1<- read.csv("/Users/aanchaldusija/Downloads/Macy_womenclothing.csv", sep = ",", header = TRUE)
+w_df_1<- read.csv("Macy_womenclothing.csv", sep = ",", header = TRUE)
 
 # DIMENSIONS OF THE DATA
 dim(w_df_1)
