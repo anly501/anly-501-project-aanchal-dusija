@@ -1,4 +1,41 @@
-<!DOCTYPE html>
+<HTML>
+	<head>
+		<link rel="stylesheet" href="../styles.css">
+	  </head>
+
+	<body>
+	    <a href="https://analytics.georgetown.edu/"><img src="https://ngpardeshi.georgetown.domains/ANLY 501 IMAGES/DSA.jpg" style="width:600px;height:200px;" /> 
+			<img src="https://ngpardeshi.georgetown.domains/ANLY 501 IMAGES/GU_Background.png" style="width:700px;height:200px;" align="right">
+		 </a> 
+	<ul class ="header">
+		<!-- link back to homepage -->
+		<li><a href="../index.html">About me</a></li>
+		
+		<!-- tab without dropdown  -->
+		<li><a href="../pages/introduction.html">Introduction</a></li>
+		<li><a href="../pages/DataGathering.html">Data Gathering</a></li>
+		<li><a href="https://github.com/anly501/anly-501-project-aanchal-dusija">Data</a></li>
+		<li><a href="https://github.com/anly501/anly-501-project-aanchal-dusija">Code</a></li>
+		<li><a href="../pages/DataCleaning.html">Data Cleaning</a></li>
+		<li><a href="../pages/Data Viz.html">Exploring Data</a></li>
+		<li class="dropdown">
+			<a href="javascript:void(0)" class="dropbtn">Naive Bayes</a>
+		
+			<div class="dropdown-content">
+			<a href="../pages/NBinR.html" >Naive Bayes in R</a>
+			<a href="../pages/NBinPy_quarto.html" >Naive Bayes in Python</a>
+			</div>
+		</li>
+		<li><a href="../pages/Clustering.html">Clustering</a></li>
+		<li><a href="../pages/ARM.html">ARM and Networking</a></li>
+		<li><a href="../pages/DT.html">Decision Trees</a></li>
+		<!-- <li><a href="../pages/xyz.html">Naive Bayes</a></li> -->
+		<li><a href="../pages/SVM.html">SVM</a></li>
+		<li><a href="../pages/Conclusion.html">Conclusions</a></li>
+		
+	</ul>
+  
+  <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
@@ -7,7 +44,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>svm</title>
+<title>Support Vector Machine for Twitter Data</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -109,14 +146,29 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <main class="content" id="quarto-document-content">
 
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Support Vector Machine for Twitter Data</h1>
+</div>
 
 
-<section id="support-vector-machine-for-twitter-data" class="level1">
-<h1>Support Vector Machine for Twitter Data</h1>
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
 <p>This page contains the SVM code and visualizations done in Python for Text data.</p>
 <section id="importing-libraries" class="level2">
 <h2 class="anchored" data-anchor-id="importing-libraries">Importing Libraries</h2>
 <div class="cell" data-execution_count="205">
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.feature_extraction.text <span class="im">import</span> CountVectorizer, TfidfVectorizer</span>
@@ -133,16 +185,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.tree <span class="im">import</span> DecisionTreeClassifier</span>
 <span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn <span class="im">import</span> metrics</span>
 <span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> wordcloud <span class="im">import</span> WordCloud, STOPWORDS</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 </section>
 <section id="inputing-data" class="level2">
 <h2 class="anchored" data-anchor-id="inputing-data">Inputing Data</h2>
-<p>The data consists of Hastags ‘fashiontrends’ and ‘ecommerce’ from the Twitter API.</p>
+<p>The data consists of Hastags fashiontrends and ecommerce from the Twitter API.</p>
 <div class="cell" data-execution_count="206">
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>df1<span class="op">=</span>pd.read_csv(<span class="st">'Clean_Twitter_data.csv'</span>)</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>df2 <span class="op">=</span> pd.read_csv(<span class="st">'Clean_Twitter_data1.csv'</span>)</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.concat([df1, df2], ignore_index<span class="op">=</span><span class="va">True</span>)</span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>df.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display" data-execution_count="206">
 
 <div>
@@ -221,8 +277,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2 class="anchored" data-anchor-id="cleaning-and-formatting-the-dataset-to-the-required-format">Cleaning and formatting the dataset to the required format</h2>
 <p>There are a lot of unwated columns in the dataframe. These columns are dropped from the dataframe, retaining only the necessary columns. The stopwords are removed and the text is tokenized, lemmatized and stemmed. Countvectorizer is applied on the data to convert it to numerical format. Checking the balance of the label is very important before performing svm, as unbalanced dataset may lead to over or underfitting.</p>
 <div class="cell" data-execution_count="207">
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df[[<span class="st">'label'</span>,<span class="st">'Tweet_lemmatized'</span>]]</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>df.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display" data-execution_count="207">
 
 <div>
@@ -267,8 +326,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 <div class="cell" data-execution_count="208">
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>final_tweets<span class="op">=</span>[i.replace(<span class="st">","</span>,<span class="st">""</span>).replace(<span class="st">"["</span>,<span class="st">""</span>).replace(<span class="st">"]"</span>,<span class="st">""</span>).replace(<span class="st">"'"</span>,<span class="st">""</span>) <span class="cf">for</span> i <span class="kw">in</span> df[<span class="st">'Tweet_lemmatized'</span>]]</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>final_tweets[<span class="dv">0</span>:<span class="dv">5</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display" data-execution_count="208">
 <pre><code>['whats outfit tonight streaming everywhere link bio saturday weekend sexpositive weekendmood deephouse techhouse spotify theeveningafter lifestyle fashiontrends styleblogger fashioninspo fashion style model painting makeup fashionblogger ',
  'festive feather fashion fashionable fashionaddict fashionblogger fashionbloggers fashiongram fashionicon fashioninspo fashionista fashionistas fashionlove fashionlovers fashionpost fashionstyle fashiontrends feather festive insta ',
@@ -278,11 +340,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 <div class="cell" data-execution_count="209">
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'final_tweets'</span>]<span class="op">=</span>final_tweets</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <div class="cell" data-execution_count="210">
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>df<span class="op">=</span>df.drop(<span class="st">'Tweet_lemmatized'</span>,axis<span class="op">=</span><span class="dv">1</span>)</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>df.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display" data-execution_count="210">
 
 <div>
@@ -327,14 +395,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 <div class="cell" data-execution_count="213">
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>X<span class="op">=</span>df[<span class="st">'final_tweets'</span>].values</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>y<span class="op">=</span>df[<span class="st">'label'</span>].values</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <div class="cell" data-execution_count="214">
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> LabelEncoder</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>labelencoder <span class="op">=</span> LabelEncoder()</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> labelencoder.fit_transform(y)</span>
 <span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>y</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display" data-execution_count="214">
 <pre><code>array([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
@@ -353,6 +427,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2 class="anchored" data-anchor-id="model-building">Model Building</h2>
 <p>Before building the model, the dataset is split into training and testing sets. The split ratio is 0.75 of the total data in the training set and 0.25 data in the testing set.</p>
 <div class="cell" data-execution_count="215">
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> random <span class="im">as</span> rd</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>MyCV_content<span class="op">=</span>CountVectorizer(<span class="bu">input</span><span class="op">=</span><span class="st">'content'</span>,</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>                        stop_words<span class="op">=</span><span class="st">'english'</span></span>
@@ -375,6 +451,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> collections <span class="im">import</span> Counter</span>
 <span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a>Counter(y).keys()</span>
 <span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a>Counter(y).values()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stderr">
 <pre><code>/opt/homebrew/Caskroom/miniforge/base/lib/python3.10/site-packages/sklearn/utils/deprecation.py:87: FutureWarning: Function get_feature_names is deprecated; get_feature_names is deprecated in 1.0 and will be removed in 1.2. Please use get_feature_names_out instead.
   warnings.warn(msg, category=FutureWarning)</code></pre>
@@ -384,29 +461,30 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 </section>
-</section>
 <section id="what-is-svm" class="level1">
 <h1>What is SVM?</h1>
-<p><code>Introduction:</code></p>
-<p>Support Vector Machine (SVM) is a relatively simple Supervised Machine Learning Algorithm used for classification and/or regression. It is more preferred for classification but is sometimes very useful for regression as well. Basically, SVM finds a hyper-plane that creates a boundary between the types of data. In 2-dimensional space, this hyper-plane is nothing but a line. In SVM, we plot each data item in the dataset in an N-dimensional space, where N is the number of features/attributes in the data. Next, find the optimal hyperplane to separate the data. So by this, you must have understood that inherently, SVM can only perform binary classification (i.e., choose between two classes). However, there are various techniques to use for multi-class problems. Support Vector Machine for Multi-CLass Problems To perform SVM on multi-class problems, we can create a binary classifier for each class of the data. The two results of each classifier will be :</p>
-<ul>
-<li>The data point belongs to that class OR</li>
-<li>The data point does not belong to that class.</li>
-</ul>
-<p><code>The Kernel Trick:</code></p>
+<p>Support Vector Machine (SVM) is a relatively simple Supervised Machine Learning Algorithm used for classification and/or regression. It is more preferred for classification but is sometimes very useful for regression as well. Basically, SVM finds a hyper-plane that creates a boundary between the types of data. In 2-dimensional space, this hyper-plane is nothing but a line. In SVM, we plot each data item in the dataset in an N-dimensional space, where N is the number of features/attributes in the data. Next, find the optimal hyperplane to separate the data. So by this, you must have understood that inherently, SVM can only perform binary classification (i.e., choose between two classes). However, there are various techniques to use for multi-class problems. Support Vector Machine for Multi-CLass Problems To perform SVM on multi-class problems, we can create a binary classifier for each class of the data. The two results of each classifier will be : The data point belongs to that class or the data point does not belong to that class.</p>
+</section>
+<section id="the-kernel-trick" class="level1">
+<h1>The Kernel Trick</h1>
 <p>We use Kernelized SVM for non-linearly separable data. Say, we have some non-linearly separable data in one dimension. We can transform this data into two dimensions and the data will become linearly separable in two dimensions. This is done by mapping each 1-D data point to a corresponding 2-D ordered pair. So for any non-linearly separable data in any dimension, we can just map the data to a higher dimension and then make it linearly separable. This is a very powerful and general transformation. A kernel is nothing but a measure of similarity between data points. The kernel function in a kernelized SVM tells you, that given two data points in the original feature space, what the similarity is between the points in the newly transformed feature space. There are various kernel functions available, but two are very popular :</p>
 <ul>
 <li><p>Radial Basis Function Kernel (RBF) The RBF kernel is the most widely used kernel concept to solve the problem of classifying datasets that cannot be separated linearly. This kernel is known to have good performance with certain parameters, and the results of the training have a small error value compared to other kernels. The Gaussian kernel RBF has two parameters, namely gamma and sigma. The gamma parameter has a default value, which is γ = 1 / (2σ) ^ 2. When gamma is high, the points around the data are likely to be considered in the calculation. The sigma parameter is used to find the optimal value for each dataset.</p></li>
 <li><p>Polynomial Kernel A Polynomial Kernel is more generalized form of the linear kernel. In machine learning, the polynomial kernel is a kernel function suitable for use in support vector machines (SVM) and other kernelizations, where the kernel represents the similarity of the training sample vectors in a feature space. Polynomial kernels are also suitable for solving classification problems on normalized training datasets. This kernel is used when data cannot be separated linearly.The polynomial kernel has a degree parameter (d) which functions to find the optimal value in each dataset. The d parameter is the degree of the polynomial kernel function with a default value of d = 2. The greater the d value, the resulting system accuracy will be fluctuating and less stable. This happens because the higher the d parameter value, the more curved the resulting hyperplane line.</p></li>
 <li><p>Sigmoid Kernel The concept of the sigmoid kernel is a development of an artificial neural network (ANN). The Sigmoid kernel has been proposed theoretically for a Support Vector Machine (SVM) because it originates from a neural network, but until now it has not been widely used in practice.The sigmoid kernel is widely applied in neural networks for classification processes. The SVM classification with the sigmoid kernel has a complex structure and it is difficult for humans to interpret and understand how the sigmoid kernel makes classification decisions. Interest in these kernels stems from their success in classifying with the neural netwotk and logistic regression, specific properties, linearity and cumulative distribution.</p></li>
 </ul>
-<p><code>Important Parameters in Kernelized SVM:</code> - The Kernel: The kernel, is selected based on the type of data and also the type of transformation. By default, the kernel is Radial Basis Function Kernel (RBF).</p>
+</section>
+<section id="important-parameters-in-kernelized-svm" class="level1">
+<h1>Important Parameters in Kernelized SVM:</h1>
 <ul>
+<li><p>The Kernel: The kernel, is selected based on the type of data and also the type of transformation. By default, the kernel is Radial Basis Function Kernel (RBF).</p></li>
 <li><p>Gamma : This parameter decides how far the influence of a single training example reaches during transformation, which in turn affects how tightly the decision boundaries end up surrounding points in the input space. If there is a small value of gamma, points farther apart are considered similar. So more points are grouped together and have smoother decision boundaries (maybe less accurate). Larger values of gamma cause points to be closer together (may cause overfitting).</p></li>
-<li><p>The ‘C’ parameter: This parameter controls the amount of regularization applied to the data. Large values of C mean low regularization which in turn causes the training data to fit very well (may cause overfitting). Lower values of C mean higher regularization which causes the model to be more tolerant of errors (may lead to lower accuracy).</p></li>
+<li><p>The C parameter: This parameter controls the amount of regularization applied to the data. Large values of C mean low regularization which in turn causes the training data to fit very well (may cause overfitting). Lower values of C mean higher regularization which causes the model to be more tolerant of errors (may lead to lower accuracy).</p></li>
 </ul>
-<p>The SVM is created using text dataset in Python.The tweets are extracted on the hashtag “fashiontrends” and hashtag “ecommerce” . The motive behind collecting this text data was to understand the opinion of people regarding fashion trends and different tweets regarding ecommerce. To keep things simple, we’ll use the scikit-learn library to generate linearly separable data.</p>
+<p>The SVM is created using text dataset in Python.The tweets are extracted on the hashtag fashiontrends and hashtag ecommerce. The motive behind collecting this text data was to understand the opinion of people regarding fashion trends and different tweets regarding ecommerce. To keep things simple, we will use the scikit-learn library to generate linearly separable data.</p>
 <div class="cell" data-execution_count="216">
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.svm <span class="im">import</span> SVC</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> GridSearchCV</span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> learning_curve</span>
@@ -418,11 +496,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>    grid_search.fit(X, y)</span>
 <span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>    grid_search.best_params_</span>
 <span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> grid_search.best_params_</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <section id="svm-model-1" class="level2">
 <h2 class="anchored" data-anchor-id="svm-model-1">SVM Model 1</h2>
 <p>This is the first SVM Model. In this model, the kernel is Sigmoid and the accuracy of this model is 96%.</p>
 <div class="cell" data-execution_count="220">
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>SVM_Model<span class="op">=</span>SVC(kernel<span class="op">=</span><span class="st">'sigmoid'</span>, C<span class="op">=</span><span class="fl">0.1</span>, probability<span class="op">=</span><span class="va">True</span>)</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>SVM_Model.fit(TrainDF, TrainLabels)</span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -442,6 +523,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a>ax1.xaxis.set_ticklabels(labels)<span class="op">;</span> ax1.yaxis.set_ticklabels(labels)<span class="op">;</span></span>
 <span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
 <span id="cb15-19"><a href="#cb15-19" aria-hidden="true" tabindex="-1"></a>plt.close()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>              precision    recall  f1-score   support
 
@@ -462,6 +544,8 @@ weighted avg       0.96      0.96      0.96        51
 <h2 class="anchored" data-anchor-id="svm-model-2">SVM Model 2</h2>
 <p>This is the second SVM Model. In this model, the kernel is Polynomial and the accuracy of this model is 75%.</p>
 <div class="cell" data-execution_count="221">
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>SVM_Model2<span class="op">=</span>SVC(kernel<span class="op">=</span><span class="st">'poly'</span>, C<span class="op">=</span><span class="dv">10</span>,probability<span class="op">=</span><span class="va">True</span>)</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>SVM_Model2.fit(TrainDF, TrainLabels)</span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -481,6 +565,7 @@ weighted avg       0.96      0.96      0.96        51
 <span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a>ax1.xaxis.set_ticklabels(labels)<span class="op">;</span> ax1.yaxis.set_ticklabels(labels)<span class="op">;</span></span>
 <span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
 <span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a>plt.close()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>              precision    recall  f1-score   support
 
@@ -501,6 +586,8 @@ weighted avg       0.84      0.75      0.73        51
 <h2 class="anchored" data-anchor-id="svm-model-3">SVM Model 3</h2>
 <p>This is the third SVM Model. In this model, the kernel is radial and the accuracy of this model is 94%.</p>
 <div class="cell" data-execution_count="225">
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>SVM_Model3<span class="op">=</span>SVC(kernel<span class="op">=</span><span class="st">'rbf'</span>, C<span class="op">=</span><span class="fl">0.3</span>,probability<span class="op">=</span><span class="va">True</span>)</span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>SVM_Model3.fit(TrainDF, TrainLabels)</span>
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -520,6 +607,7 @@ weighted avg       0.84      0.75      0.73        51
 <span id="cb19-17"><a href="#cb19-17" aria-hidden="true" tabindex="-1"></a>ax1.xaxis.set_ticklabels(labels)<span class="op">;</span> ax1.yaxis.set_ticklabels(labels)<span class="op">;</span></span>
 <span id="cb19-18"><a href="#cb19-18" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
 <span id="cb19-19"><a href="#cb19-19" aria-hidden="true" tabindex="-1"></a>plt.close()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>              precision    recall  f1-score   support
 

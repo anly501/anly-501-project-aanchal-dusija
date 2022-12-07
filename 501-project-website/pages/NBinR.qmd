@@ -1,0 +1,149 @@
+---
+title: "Naive Bayes for Record Data in R"
+format: 
+  html:
+    code-fold: true
+---
+
+```{r setup, include=FALSE} 
+knitr::opts_chunk$set(warning = FALSE, message = FALSE) 
+```
+
+
+### **What is Naive Bayes?**
+
+It is a classification technique based on Bayes Theorem with an assumption of independence among predictors. In simple terms, a Naive Bayes classifier assumes that the presence of a particular feature in a class is unrelated to the presence of any other feature. Naive Bayes model is easy to build and particularly useful for very large data sets. Along with simplicity, Naive Bayes is known to outperform even highly sophisticated classification methods.
+
+This page will look at Naive Bayes Classification, Attribute Selection Measures, and how to build and optimize a Naive Bayes Classifier using R. Naive Bayes is a simple method for developing classifiers, which are models that assign class labels to problem cases represented as vectors of feature values, with the class labels chosen from a small set. There is no single algorithm for training such classifiers, but rather a collection of algorithms based on the same principle: all naive Bayes classifiers assume that the value of one feature is independent of the value of any other feature, given the class variable. This page contains the Naive Bayes code and visualizations done in R for Record data
+
+## Assumption for Naive Bayes:
+The Naive Bayes algorithm makes the assumption that the predictors are independent of each other. In real life, it is almost impossible that we get a set of predictors which are completely independent.
+
+## Types of Naive Bayes Classifier:
+● Multinomial Naive Bayes:
+This is mostly used to determine how to place a document into a certain category, such as sports, politics, technology, etc. The frequency of the words in the document is one of the things that the classifier looks at.
+
+● Bernoulli Naive Bayes:
+This is comparable to the multinomial naive bayes model, with the exception that the predictors are boolean variables. The parameters that we use to predict the class variable take on simply yes or no values, such as whether or not a word appears in the text.
+
+● Gaussian Naive Bayes:
+When predictors have continuous values and are not discrete, these values are assumed to be drawn from a Gaussian distribution.
+
+## Advantages of Naive Bayes
+● This algorithm is efficient and can save a great deal of time.
+
+● The Naive Bayes method can be used to solve multiclass prediction issues.
+
+● If the model's assumption on the independence of characteristics remains true, it can outperform competing models and requires significantly less training data.
+
+● The Naive Bayes algorithm is more suitable for category input variables than numerical ones.
+
+## Disadvantages of Naive Bayes
+● Naive Bayes assumes that all predictors (or features) are independent, which rarely happens in real life. This makes it harder for this algorithm to be used in the real world.
+
+● The "zero-frequency problem" is when this algorithm gives a probability of 0 to a categorical variable whose category in the test data set wasn't in the training data set. The best way to solve this problem would be to use a smoothing method.
+
+● Its estimations can be wrong in some cases, so you shouldn’t take its probability outputs very seriously.
+
+
+## **Naive Bayes in R**
+
+The naive bayes is created using Macy's dataset in R. It is the same record dataset used for decision trees. The dataset has been webscrapped from the Macy's official website. This dataset has been cleaned and now consists of various features like Rating, Average Price, Stock of each colour, Total Stock, and Price Type.The label column contains the data of whether the item is expensive (average price greater than or equal to \$100) or reasonable(average price less than \$100).
+
+# Clearing Environment
+
+```{r}
+rm(list=ls())
+```
+
+## Libraries
+
+```{r}
+#| echo: false
+library(e1071)
+library(caTools)
+library(caret)
+library(dplyr)
+library(Hmisc)
+library(tidyverse)
+library(ggplot2)
+library(caret)
+library(caretEnsemble)
+library(psych)
+library(Amelia)
+library(mice)
+library(GGally)
+library(ROSE)
+library(rpart)
+library(randomForest)
+```
+
+## Loading Data
+
+```{r}
+#| echo: false
+macy <- read_csv("macy_mw.csv")
+head(macy)
+macy<-macy[,c('Rating','Average_Price','C0_stock','C1_stock','C2_stock','C3_stock','C4_stock','C5_stock','Total_stock','Price_type')]
+```
+## Balancing Data
+```{r}
+macy_balanced <- ovun.sample(Price_type~., data=macy,
+                             N=nrow(macy), p=0.5,
+                             seed=1, method="both")$data
+
+apply(macy_balanced, 2, table)
+```
+
+# Exploratory data analysis
+```{r}
+describe(macy_balanced)
+```
+
+# Splitting test and train
+```{r}
+indxTrain <- createDataPartition(y = macy_balanced$Price_type,p = 0.75,list = FALSE)
+training <- macy_balanced[indxTrain,]
+testing <- macy_balanced[-indxTrain,] #Check dimensions of the split > pro
+```
+
+# Feature Scaling
+```{r}
+x = training[,-10]
+y = training$Price_type
+```
+
+
+# Model Building
+```{r}
+model = train(x,y,'nb',trControl=trainControl(method='cv',number=10))
+model
+```
+
+# Prediction
+```{r}
+Predict <- predict(model,newdata = testing ) #Get the confusion matrix to see accuracy value and other parameter values > 
+```
+
+# Variable Importance Plot
+```{r}
+X <- varImp(model)
+plot(X)
+```
+
+# Confusion Matrix 
+```{r}
+cm = confusionMatrix(as.factor(testing$Price_type), Predict)
+print(cm)
+
+plt <- as.data.frame(cm$table)
+plt$Prediction <- factor(plt$Prediction, levels=rev(levels(plt$Prediction)))
+
+ggplot(plt, aes(Prediction,Reference, fill= Freq)) +
+  geom_tile() + geom_text(aes(label=Freq)) +
+  scale_fill_gradient(low="white", high="#009194") +
+  labs(x = "Reference",y = "Prediction") +
+  scale_x_discrete(labels=c("Expensive","Reasonable","Expensive","Reasonable")) +
+  scale_y_discrete(labels=c("Reasonable","Expensive","Reasonable","Expensive"))
+
+```

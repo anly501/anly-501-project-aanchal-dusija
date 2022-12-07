@@ -1,4 +1,41 @@
-<!DOCTYPE html>
+<HTML>
+	<head>
+		<link rel="stylesheet" href="../styles.css">
+	  </head>
+
+	<body>
+	    <a href="https://analytics.georgetown.edu/"><img src="https://ngpardeshi.georgetown.domains/ANLY 501 IMAGES/DSA.jpg" style="width:600px;height:200px;" /> 
+			<img src="https://ngpardeshi.georgetown.domains/ANLY 501 IMAGES/GU_Background.png" style="width:700px;height:200px;" align="right">
+		 </a> 
+	<ul class ="header">
+		<!-- link back to homepage -->
+		<li><a href="../index.html">About me</a></li>
+		
+		<!-- tab without dropdown  -->
+		<li><a href="../pages/introduction.html">Introduction</a></li>
+		<li><a href="../pages/DataGathering.html">Data Gathering</a></li>
+		<li><a href="https://github.com/anly501/anly-501-project-aanchal-dusija">Data</a></li>
+		<li><a href="https://github.com/anly501/anly-501-project-aanchal-dusija">Code</a></li>
+		<li><a href="../pages/DataCleaning.html">Data Cleaning</a></li>
+		<li><a href="../pages/Data Viz.html">Exploring Data</a></li>
+		<li class="dropdown">
+			<a href="javascript:void(0)" class="dropbtn">Naive Bayes</a>
+		
+			<div class="dropdown-content">
+			<a href="../pages/NBinR.html" >Naive Bayes in R</a>
+			<a href="../pages/NBinPy_quarto.html" >Naive Bayes in Python</a>
+			</div>
+		</li>
+		<li><a href="../pages/Clustering.html">Clustering</a></li>
+		<li><a href="../pages/ARM.html">ARM and Networking</a></li>
+		<li><a href="../pages/DT.html">Decision Trees</a></li>
+		<!-- <li><a href="../pages/xyz.html">Naive Bayes</a></li> -->
+		<li><a href="../pages/SVM.html">SVM</a></li>
+		<li><a href="../pages/Conclusion.html">Conclusions</a></li>
+		
+	</ul>
+  
+  <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
@@ -7,7 +44,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>clustering</title>
+<title>Clustering For Record Data</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -109,19 +146,33 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <main class="content" id="quarto-document-content">
 
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Clustering For Record Data</h1>
+</div>
 
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
 
 <section id="introduction" class="level2">
 <h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
 <ul>
-<li>I have taken Macy’s Dataset by Webscraping data from the Macy’s Official Website to perform Clustering Analysis on Record Data.</li>
-<li>The data has been cleaned in the previous tabs. However, I have done some exploratory data analysis relevant for Cluster Analysis.</li>
-<li>The dataset contains of the Brand name, Apparel Category, Various Colors Available, Customer Ratings, URL of the product, Average Price among various colors, Stock available for each Color, Total Stock of the product, Gender of the Apparel and Price Type (Expensive or Reasonable).</li>
-<li>The table has 1429 rows with 20 columns which is eventually reduced to 12 columns.</li>
-<li>There are missing values found in the dataset which have been filled up. For contionous variables, the missing value has been filled up with the mean value. For the categorical variables, the missing value has been filled up with the modal value.</li>
-<li>Some of the features are categorical and are be converted into numeric using cat.codes.</li>
+<li>I have taken Macys Dataset by Webscraping data from the Macys Official Website to perform Clustering Analysis on Record Data. The data has been cleaned in the previous tabs. However, I have done some exploratory data analysis relevant for Cluster Analysis.</li>
+<li>The dataset contains of the Brand name, Apparel Category, Various Colors Available, Customer Ratings, URL of the product, Average Price among various colors, Stock available for each Color, Total Stock of the product, Gender of the Apparel and Price Type (Expensive or Reasonable). The table has 1429 rows with 20 columns which is eventually reduced to 12 columns.</li>
+<li>There are missing values found in the dataset which have been filled up. For contionous variables, the missing value has been filled up with the mean value. For the categorical variables, the missing value has been filled up with the modal value. Some of the features are categorical and are be converted into numeric using cat.codes.</li>
 </ul>
 <div class="cell" data-execution_count="274">
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Import the necessary packages</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
@@ -132,12 +183,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.spatial.distance <span class="im">import</span> cdist</span>
 <span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> warnings</span>
 <span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>warnings.filterwarnings(<span class="st">'ignore'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <div class="cell" data-execution_count="275">
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Macy's Data</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">'macy_mw.csv'</span>)</span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>df.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display" data-execution_count="275">
 
 <div>
@@ -290,12 +345,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 <div class="cell" data-execution_count="276">
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove unnecessary columns</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>df.drop([<span class="st">'Color1'</span>, <span class="st">'Color2'</span>,<span class="st">'Color3'</span>,<span class="st">'Color4'</span>,<span class="st">'Color5'</span>,<span class="st">'URL'</span>,<span class="st">'Color0'</span>,<span class="st">'Category'</span>], axis<span class="op">=</span><span class="dv">1</span>, inplace<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <div class="cell" data-execution_count="277">
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Checking for missing values</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>df.isnull().<span class="bu">sum</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display" data-execution_count="277">
 <pre><code>Brand              0
 Rating             0
@@ -313,16 +374,25 @@ dtype: int64</code></pre>
 </div>
 </div>
 <div class="cell" data-execution_count="278">
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Replace continuous missing values with mean of the column. check for Nan values again.</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'Average_Price'</span>] <span class="op">=</span> df[<span class="st">'Average_Price'</span>].fillna(df[<span class="st">'Average_Price'</span>].mean())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <div class="cell" data-execution_count="279">
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Replace categorical missing values with mode of the column. check for Nan values again.</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'Price_type'</span>] <span class="op">=</span> df[<span class="st">'Price_type'</span>].fillna(df[<span class="st">'Price_type'</span>].mode()[<span class="dv">0</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <div class="cell" data-execution_count="280">
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Checking for missing values</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>df.isnull().<span class="bu">sum</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display" data-execution_count="280">
 <pre><code>Brand            0
 Rating           0
@@ -340,11 +410,14 @@ dtype: int64</code></pre>
 </div>
 </div>
 <div class="cell" data-execution_count="281">
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Replace categorical values with category codes by using the cat.codes function. </span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'Brand'</span>] <span class="op">=</span> df[<span class="st">'Brand'</span>].astype(<span class="st">'category'</span>).cat.codes</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'Gender'</span>] <span class="op">=</span> df[<span class="st">'Gender'</span>].astype(<span class="st">'category'</span>).cat.codes</span>
 <span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'Price_type'</span>] <span class="op">=</span> df[<span class="st">'Price_type'</span>].astype(<span class="st">'category'</span>).cat.codes</span>
 <span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>df.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display" data-execution_count="281">
 
 <div>
@@ -449,6 +522,8 @@ dtype: int64</code></pre>
 </div>
 </div>
 <div class="cell" data-execution_count="282">
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Split the dataset in X and y. </span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Since this is unsupervised learning, we will not use the y labels. </span></span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Normalizing the X data by using the StandardScaler function.</span></span>
@@ -457,16 +532,16 @@ dtype: int64</code></pre>
 <span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> df[<span class="st">'Price_type'</span>]</span>
 <span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>scaler <span class="op">=</span> StandardScaler()</span>
 <span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> scaler.fit_transform(X)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 </section>
 <section id="clustering" class="level1">
 <h1>Clustering</h1>
-<p>One of the most popular methods for gaining a general understanding of the data’s structure is clustering. It can be summed up as the process of finding data subgroups where data points in the same subgroup (cluster) are extremely similar and other data points in other clusters are very dissimilar. To put it another way, we look for homogeneous subgroups within the data so that the data points in each cluster are as comparable as feasible based on a similarity metric like the euclidean-based distance or the correlation-based distance.</p>
-<p>Since we lack the ground truth to compare the output of the clustering algorithm to the true labels in order to assess its success, clustering is regarded as an unsupervised learning technique. By dividing the data points into discrete subgroups, we simply wish to try to study the data’s structure.</p>
-<!-- Different Types of Clustering are: -->
-<!-- - K-Means Clustering: Distance Between Points -->
-<!-- - DBSCAN Clustering: Distance Between the Nearest Points -->
+<p>One of the most popular methods for gaining a general understanding of the datas structure is clustering. It can be summed up as the process of finding data subgroups where data points in the same subgroup (cluster) are extremely similar and other data points in other clusters are very dissimilar. To put it another way, we look for homogeneous subgroups within the data so that the data points in each cluster are as comparable as feasible based on a similarity metric like the euclidean-based distance or the correlation-based distance.</p>
+<p>Since we lack the ground truth to compare the output of the clustering algorithm to the true labels in order to assess its success, clustering is regarded as an unsupervised learning technique. By dividing the data points into discrete subgroups, we simply wish to try to study the datas structure.</p>
 <div class="cell" data-execution_count="283">
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Importing relevent libraries for clustering. </span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="co"># We will use KMeans, AgglomerativeClustering, MeanShift, Birch, and DBSCAN</span></span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -479,19 +554,22 @@ dtype: int64</code></pre>
 <span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.cluster <span class="im">import</span> MeanShift, estimate_bandwidth</span>
 <span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> itertools <span class="im">import</span> cycle</span>
 <span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.cluster <span class="im">import</span> Birch</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <section id="k-means-clustering" class="level2">
 <h2 class="anchored" data-anchor-id="k-means-clustering">K-Means Clustering</h2>
 <p>The iterative Kmeans algorithm attempts to divide the dataset into K unique, non-overlapping subgroups (clusters), each of which contains a single data point. While keeping the clusters as distinct (far) apart as possible, it aims to make the intra-cluster data points as comparable as possible. It assigns data points to clusters in a way that minimizes the sum of the squared distances between the data points and the cluster centroid, which is the average value of all the data points in the cluster. The homogeneity (similarity) of the data points within a cluster increases as the amount of variance within the cluster decreases.</p>
 <p>It is advised to standardize the data to have a mean of zero and a standard deviation of one because clustering algorithms, such as kmeans, use distance-based measurements to compare the similarity between data points. This is because features in any dataset almost always have different units of measurement, such as age vs.&nbsp;income.</p>
-<p>Different initializations may result in different clusters since the kmeans method may get trapped in a local optimum and not converge to a global optimum due to its iterative nature and the random initialization of centroids at the beginning of the algorithm. Therefore, it is advised to execute the method with several centroids’ initializations and select the results of the run that produced the smallest sum of squared distance.</p>
+<p>Different initializations may result in different clusters since the kmeans method may get trapped in a local optimum and not converge to a global optimum due to its iterative nature and the random initialization of centroids at the beginning of the algorithm. Therefore, it is advised to execute the method with several centroids initializations and select the results of the run that produced the smallest sum of squared distance.</p>
 </section>
 </section>
 <section id="hyper-parameter-tuning" class="level1">
 <h1>Hyper Parameter Tuning:</h1>
-<p>Elbow Method is the hyper parameter tuning technique employed here. Since the data set’s dimension is tiny and the elbow approach works well for data with small dimensions, this method was chosen. An average score for all clusters is determined for each value of k. In order to get the closest centroid for each value, distortion and inertia are computed.</p>
-<p>Determining the data’s ideal K value. The simplest clustering algorithm is K-means. For an n-count of records, it creates K clusters. The following is how the analogy works: - The initialization of k is random. The term for it is cluster centriods. This k value ranges from 1 to 10 in the code below. Inertia is estimated for each k. The distance between each data point and its centroid is squared and added to determine inertia. - One with little inertia and few clusters is an excellent model. - Each k-distortion value’s is calculated. It is the separation between each observation and the centroid with the greatest dominance. - Low distortion is ideal for clusters.</p>
+<p>Elbow Method is the hyper parameter tuning technique employed here. Since the data set dimension is tiny and the elbow approach works well for data with small dimensions, this method was chosen. An average score for all clusters is determined for each value of k. In order to get the closest centroid for each value, distortion and inertia are computed.</p>
+<p>Determining the datas ideal K value. The simplest clustering algorithm is K-means. For an n-count of records, it creates K clusters. The following is how the analogy works: The initialization of k is random. The term for it is cluster centriods. This k value ranges from 1 to 10 in the code below. Inertia is estimated for each k. The distance between each data point and its centroid is squared and added to determine inertia. One with little inertia and few clusters is an excellent model. Each k-distortion values is calculated. It is the separation between each observation and the centroid with the greatest dominance. Low distortion is ideal for clusters.</p>
 <div class="cell" data-execution_count="284">
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># For k means clustering we will use the elbow method to find the optimal number of clusters. </span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="co"># we will use the inertia_ attribute to find the sum of squared distances of samples to their closest cluster center. </span></span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="co"># we will use the range of 1 to 10 clusters. plot the inertia_ values for each number of clusters. </span></span>
@@ -503,6 +581,7 @@ dtype: int64</code></pre>
 <span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>    kmeans.fit(X)</span>
 <span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>    inertia <span class="op">=</span> inertia.append({<span class="st">'clusters'</span>: i, <span class="st">'inertia'</span>: kmeans.inertia_, <span class="st">'distortion'</span>: <span class="bu">sum</span>(np.<span class="bu">min</span>(cdist(X, kmeans.cluster_centers_, <span class="st">'euclidean'</span>), axis<span class="op">=</span><span class="dv">1</span>))<span class="op">/</span>X.shape[<span class="dv">0</span>]}, ignore_index<span class="op">=</span><span class="va">True</span>)</span>
 <span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>inertia</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display" data-execution_count="284">
 
 <div>
@@ -583,11 +662,14 @@ dtype: int64</code></pre>
 </div>
 </div>
 <div class="cell" data-execution_count="285">
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># plot distortion and inertia for kmeans, </span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="co"># you can either plot them seperately or use fig, ax = plt.subplots(1, 2) to plot them in the same figure. </span></span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Suggest the optimal number of clusters based on the plot.</span></span>
 <span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>inertia.plot.line(x<span class="op">=</span><span class="st">"clusters"</span>, subplots<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display" data-execution_count="285">
 <pre><code>array([&lt;AxesSubplot:xlabel='clusters'&gt;, &lt;AxesSubplot:xlabel='clusters'&gt;],
       dtype=object)</code></pre>
@@ -597,6 +679,8 @@ dtype: int64</code></pre>
 </div>
 </div>
 <div class="cell" data-execution_count="286">
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>kmeans <span class="op">=</span> KMeans(n_clusters<span class="op">=</span><span class="dv">6</span>, random_state<span class="op">=</span><span class="dv">123</span>)</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>kmeans.fit(X)</span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>labels <span class="op">=</span> kmeans.labels_</span>
@@ -605,6 +689,7 @@ dtype: int64</code></pre>
 <span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>plt.scatter(centroids[:, <span class="dv">0</span>], centroids[:, <span class="dv">1</span>], c<span class="op">=</span><span class="st">'black'</span>, s<span class="op">=</span><span class="dv">200</span>, alpha<span class="op">=</span><span class="fl">0.5</span>)</span>
 <span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'K-Means Clustering for K=6'</span>)</span>
 <span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display">
 <p><img src="Clustering_files/figure-html/cell-14-output-1.png" class="img-fluid"></p>
 </div>
@@ -612,22 +697,20 @@ dtype: int64</code></pre>
 <p>A graph is plotted against the k clusters and, inertia and distortion respectively We can see that the graph decreases linearly after k=6.Therefore, optimal k is chosen as 6. Data is fit into K-means algorithm after choosing the optimal K value as 6. The labels are then predicted. A graph is plotted for 6 clusters for two variables in the data. We see that some of the clusters are overlapping.</p>
 <section id="dbscan-clustering" class="level2">
 <h2 class="anchored" data-anchor-id="dbscan-clustering">DBSCAN Clustering</h2>
-<p>Clusters are dense areas of the data space that are divided by areas of lower point densities. This common understanding of “clusters” and “noise” is the foundation of the DBSCAN algorithm. The main idea is that at least a certain number of points must be present in the vicinity of each point within a cluster for a given radius.</p>
+<p>Clusters are dense areas of the data space that are divided by areas of lower point densities. This common understanding of clusters and noise is the foundation of the DBSCAN algorithm. The main idea is that at least a certain number of points must be present in the vicinity of each point within a cluster for a given radius.</p>
 <p>DBSCAN algorithm requires two parameters:</p>
 <ul>
-<li>eps : It defines the neighborhood around a data point i.e.&nbsp;if the distance between two points is lower or equal to ‘eps’ then they are considered neighbors. If the eps value is chosen too small then large part of the data will be considered as outliers. If it is chosen very large then the clusters will merge and the majority of the data points will be in the same clusters. One way to find the eps value is based on the k-distance graph.</li>
+<li>eps : It defines the neighborhood around a data point i.e.&nbsp;if the distance between two points is lower or equal to eps then they are considered neighbors. If the eps value is chosen too small then large part of the data will be considered as outliers. If it is chosen very large then the clusters will merge and the majority of the data points will be in the same clusters. One way to find the eps value is based on the k-distance graph.</li>
 <li>MinPts: Minimum number of neighbors (data points) within eps radius. Larger the dataset, the larger value of MinPts must be chosen. As a general rule, the minimum MinPts can be derived from the number of dimensions D in the dataset as, MinPts &gt;= D+1. The minimum value of MinPts must be chosen at least 3.</li>
 </ul>
 </section>
 </section>
 <section id="hyper-tuning-parameter" class="level1">
 <h1>Hyper-Tuning Parameter:</h1>
-<p>Choosing the best cluster value using the Silhouette score for hyper parameter tweaking. The cohesiveness (similarity) of a data point within a cluster as compared to other clusters is measured by the silhouette co-efficient.</p>
-<ul>
-<li>Selected a set of possible k values</li>
-<li>Computed EPs, Min Samples, and Score for each K value.</li>
-</ul>
+<p>Choosing the best cluster value using the Silhouette score for hyper parameter tweaking. The cohesiveness (similarity) of a data point within a cluster as compared to other clusters is measured by the silhouette co-efficient. Selected a set of possible k values and computed EPs, Min Samples, and Score for each K value.</p>
 <div class="cell" data-execution_count="287">
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># DBSCAN Clustering</span></span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="co"># perform DBSCAN clustering. use the eps and min_samples parameters to find the optimal number of clusters. </span></span>
@@ -649,6 +732,7 @@ dtype: int64</code></pre>
 <span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a>            dbscan_df <span class="op">=</span> dbscan_df.append({<span class="st">'eps'</span>: i, <span class="st">'min_samples'</span>: j, <span class="st">'clusters'</span>: <span class="dv">0</span>, <span class="st">'silhouette_score'</span>: <span class="dv">0</span>}, ignore_index<span class="op">=</span><span class="va">True</span>)</span>
 <span id="cb17-20"><a href="#cb17-20" aria-hidden="true" tabindex="-1"></a>        </span>
 <span id="cb17-21"><a href="#cb17-21" aria-hidden="true" tabindex="-1"></a>dbscan_df.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display" data-execution_count="287">
 
 <div>
@@ -707,14 +791,18 @@ dtype: int64</code></pre>
 </section>
 <section id="plot-for-silhouette-scores-for-each-cluster-value." class="level1">
 <h1>Plot for Silhouette scores for each cluster value.</h1>
-<p>The value of silhouette coefficient is [-1,1] - 1 denotes that the data is very compact and is within the cluster.</p>
+<p>The value of silhouette coefficient is [-1,1]</p>
 <ul>
+<li>1 denotes that the data is very compact and is within the cluster.</li>
 <li>-1 value denotes that the data is no where near the cluster.</li>
 <li>0 denotes that the clusters are overlapping.</li>
 </ul>
 <p>From the graph plotted below, the optimal cluster size is 2, eps is 1.6, and min_samples is 9.</p>
 <div class="cell" data-execution_count="288">
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>dbscan_df.plot.line(x<span class="op">=</span><span class="st">'clusters'</span>, y<span class="op">=</span><span class="st">'silhouette_score'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display" data-execution_count="288">
 <pre><code>&lt;AxesSubplot:xlabel='clusters'&gt;</code></pre>
 </div>
@@ -723,7 +811,10 @@ dtype: int64</code></pre>
 </div>
 </div>
 <div class="cell" data-execution_count="289">
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>dbscan_df[dbscan_df[<span class="st">'silhouette_score'</span>] <span class="op">==</span> <span class="bu">max</span>(dbscan_df[<span class="st">'silhouette_score'</span>])]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display" data-execution_count="289">
 
 <div>
@@ -752,32 +843,43 @@ dtype: int64</code></pre>
 </div>
 </div>
 <div class="cell" data-execution_count="290">
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>optimal_cluster_size <span class="op">=</span> dbscan_df[<span class="st">'clusters'</span>][dbscan_df[<span class="st">'silhouette_score'</span>] <span class="op">==</span> <span class="bu">max</span>(dbscan_df[<span class="st">'silhouette_score'</span>])]</span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>optimal_cluster_size</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display" data-execution_count="290">
 <pre><code>139    2.0
 Name: clusters, dtype: float64</code></pre>
 </div>
 </div>
-<p>After calculating the optimal values, the data is fit into DBSCAN algorithm. labels are predicted. -1 in labels is essentially noise. In this record data we don’t see any noise. The unique cluster labels are 0 and 1.</p>
+<p>After calculating the optimal values, the data is fit into DBSCAN algorithm. labels are predicted. 1 in labels is essentially noise. In this record data we dont see any noise. The unique cluster labels are 0 and 1.</p>
 <div class="cell" data-execution_count="291">
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>dbscan <span class="op">=</span> DBSCAN(eps<span class="op">=</span><span class="fl">1.7</span>, min_samples<span class="op">=</span><span class="dv">10</span>)</span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>dbscan.fit(X)</span>
 <span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>y_pred <span class="op">=</span> dbscan.fit_predict(X)</span>
 <span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>labels_DB <span class="op">=</span> dbscan.labels_</span>
 <span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(labels_DB)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>[0 0 0 ... 2 2 2]</code></pre>
 </div>
 </div>
 <div class="cell" data-execution_count="292">
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> collections</span>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>collections.Counter(labels_DB)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display" data-execution_count="292">
 <pre><code>Counter({0: 852, -1: 103, 1: 9, 2: 465})</code></pre>
 </div>
 </div>
 <div class="cell" data-execution_count="293">
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co">#plot clusters using PCA</span></span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.decomposition <span class="im">import</span> PCA</span>
 <span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -789,6 +891,7 @@ Name: clusters, dtype: float64</code></pre>
 <span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Air Quality measures'</span>) </span>
 <span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'DBSCAN Clusters'</span>)</span>
 <span id="cb27-11"><a href="#cb27-11" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display">
 <p><img src="Clustering_files/figure-html/cell-21-output-1.png" class="img-fluid"></p>
 </div>
@@ -797,14 +900,16 @@ Name: clusters, dtype: float64</code></pre>
 <section id="agglomerative-hierarchical-clustering" class="level1">
 <h1>Agglomerative Hierarchical Clustering</h1>
 <p>The most typical hierarchical clustering method used to put objects in clusters based on their similarity is called agglomerative clustering. Another name for it is AGNES (Agglomerative Nesting). Each object is first treated as a singleton cluster by the algorithm. Once all clusters have been merged into a single large cluster containing all items, pairs of clusters are gradually combined. The outcome is a dendrogram, which is a tree-based representation of the objects.</p>
-<p>The process of agglomerative clustering is “bottom-up.” In other words, each item is originally thought of as a cluster with just one piece (leaf). The two clusters that are the most comparable are joined into a new, larger cluster at each stage of the process (nodes). The process is repeated until every point is a part of a single large cluster.</p>
-<p>By calculating the euclidean distance between the data points, we start the agglomerative clustering procedure. Then, in order to create our initial node, we merge the matrix’s smallest non-zero distance. We must update our distance matrix each time there is a new node or cluster. However, we were still unsure of how far apart two distinct clusters were from one another. Moving on, we must establish the linking criterion, where the distance between clusters X and Y is determined by the minimal distance between x and y, which are members of the X and Y clusters, respectively.Up until all the data is clustered into a single cluster, the merging event is continuously repeated. We would ultimately obtain a dendrogram with all the data combined into a single cluster.</p>
+<p>The process of agglomerative clustering is bottom up. In other words, each item is originally thought of as a cluster with just one piece (leaf). The two clusters that are the most comparable are joined into a new, larger cluster at each stage of the process (nodes). The process is repeated until every point is a part of a single large cluster.</p>
+<p>By calculating the euclidean distance between the data points, we start the agglomerative clustering procedure. Then, in order to create our initial node, we merge the matrixs smallest non-zero distance. We must update our distance matrix each time there is a new node or cluster. However, we were still unsure of how far apart two distinct clusters were from one another. Moving on, we must establish the linking criterion, where the distance between clusters X and Y is determined by the minimal distance between x and y, which are members of the X and Y clusters, respectively.Up until all the data is clustered into a single cluster, the merging event is continuously repeated. We would ultimately obtain a dendrogram with all the data combined into a single cluster.</p>
 </section>
 <section id="determining-the-number-of-clusters" class="level1">
 <h1>Determining the number of clusters</h1>
-<p>What do we do with the dendrogram that we already have? It would be used to help us select a cluster for our data. Keep in mind that the dendrogram simply displayed the data’s hierarchy; it did not provide us with the precise number of clusters that was ideal.</p>
+<p>What do we do with the dendrogram that we already have? It would be used to help us select a cluster for our data. Keep in mind that the dendrogram simply displayed the datas hierarchy; it did not provide us with the precise number of clusters that was ideal.</p>
 <p>By eyeballing our dendrogram and selecting a specific value as our cut-off point, we can best determine the cluster number (manual way). The cut-off point that produces the tallest vertical line is typically used.&nbsp;The number of the cluster would be determined by how many times the horizontal line crossed the vertical line.</p>
 <div class="cell" data-execution_count="294">
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Agglomerative Clustering - Hierarchical Clustering</span></span>
 <span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Perform Agglomerative Clustering</span></span>
@@ -813,8 +918,11 @@ Name: clusters, dtype: float64</code></pre>
 <span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> AgglomerativeClustering().fit(X)</span>
 <span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a>labels <span class="op">=</span> model.labels_</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <div class="cell" data-execution_count="295">
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># create linkage for agglomerative clustering, and the dendrogram for the linkage. The optimal number of clusters based on the dendrogram.</span></span>
 <span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>Z <span class="op">=</span> linkage(X, method<span class="op">=</span><span class="st">'ward'</span>)</span>
@@ -827,6 +935,7 @@ Name: clusters, dtype: float64</code></pre>
 <span id="cb29-10"><a href="#cb29-10" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
 <span id="cb29-11"><a href="#cb29-11" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb29-12"><a href="#cb29-12" aria-hidden="true" tabindex="-1"></a><span class="co"># 2 clusters are optimal.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display">
 <p><img src="Clustering_files/figure-html/cell-23-output-1.png" class="img-fluid"></p>
 </div>
@@ -838,8 +947,11 @@ Name: clusters, dtype: float64</code></pre>
 <li>Performing clustering using varios algorithms gave various results. The K means algorithm used 8 clusters to classify the data set, DBSCAN only 2 clusters were chosen and Agglomerative Hierarchical Clustering chose 2 clusters to be optimal.</li>
 <li>From the methods it is safe to say that the data has more similarity. Because most data points fall into one cluster.</li>
 <li>Aglomerative clustering was more time consuming, followed by DBSCAN and K- means.</li>
-<li>Performing clustering on this algorithm proves that although, there are few dissimilar data points. Out of the three algorithms used, DBSCAN is found best for this dataset considering the time, number of clusters and data points in each clusters.</li>
 </ul>
+</section>
+<section id="conclusion" class="level1">
+<h1>Conclusion</h1>
+<p>The retail e-commerce data was chosen for clustering algorithm to identify similarities between fashion trends in Macy data. Performing clustering on this algorithm proves that although, there are few dissimilar data points. Out of the three algorithms used, DBSCAN is found best for this dataset considering the time, number of clusters and data points in each clusters.</p>
 </section>
 
 </main>

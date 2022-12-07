@@ -1,169 +1,14 @@
 
 <HTML>
+	<head>
+		<link rel="stylesheet" href="../styles.css">
+	  </head>
 
-	<!-- <head>
-		<title>Naive Bayes in R</title>
-		<link rel="stylesheet" href="styles.css">
-	</head>
-	
-	<body style="background-color:#F6F5F5;"> -->
-	
-	<style>
-	
-	.container{
-		display: flex;
-		flex-direction: column;
-	}
-	
-	ibody{
-		margin:0;
-		min-height: 100%;
-		min-width:100%;
-		
-	}
-	
-	
-	body {
-		font-family: verdana;
-		background-color : #F6F5F5 ;
-		position : relative
-		style: #232435;
-	
-	}
-	
-	.navbar{
-		top:0;
-		position: fixed;
-		width : 100%;
-		
-	}
-	
-	.topnav {
-	  overflow: hidden;
-	  background-color: #1F1A40;
-	}
-	
-	.topnav a {
-	  float: left;
-	  color: #BBD8F2;
-	  text-align: center;
-	  padding: 12px 14px;
-	  text-decoration: none;
-	  font-size: 17px;
-	}
-	
-	.topnav a:hover {
-	  background-color: #D3E0EA;
-	  color: black;
-	}
-	
-	.topnav a.active {
-	  background-color: #FFFFFF;
-	  color: white;
-	}
-	
-	.headerLogo{
-	  top:200px;
-	  height:250px;
-	  width:200px;
-	  line-height:200px;
-	
-	  overflow:hidden;
-	 
-	  top:200px; height:900px; width:1450px; line-height:500px
-	}
-	.center {
-	  display: block;
-	  margin-left: auto;
-	  margin-right: auto;
-	  width: 100%;
-	}
-	
-	h1 {text-align: left;}
-	p {text-align: justify;
-		text-justify: inter-word;
-	}
-	div {text-align: left;}
-	
-	.content{
-		margin-left:0;
-		padding : 2% 25% 2% 25%;
-	}
-	
-	ul {
-		list-style-type: none;
-		margin: 0;
-		padding: 0;
-		overflow: hidden;
-		background-color: #004d99;
-		max-width:1500px;
-	}
-	
-	li {
-		float: left;
-	} -->
-	
-	<!-- li a, .dropbtn {
-		display: inline-block;
-		color: white;
-		text-align: center;
-		padding: 14px 16px;
-		text-decoration: none;
-	}
-	
-	li a:hover, .dropdown:hover .dropbtn {
-		background-color: #004d99;
-	}
-	
-	li.dropdown {
-		display: inline-block;
-	}
-	
-	.dropdown-content {
-		display: none;
-		position: absolute;
-		background-color: white;
-		min-width: 160px;
-		
-		
-	}
-	
-	.dropdown-content a {
-		color: black;
-		padding: 12px 16px;
-		text-decoration: none;
-		display: block;
-		text-align: left;
-		
-	}
-	
-	
-	
-	.dropdown:hover .dropdown-content {
-		display: block;
-		opacity: 1;
-	}
-	td {
-		padding: 5px;
-		text-align: left;
-		width: 500px;
-	}
-	
-	tr{
-	   padding: 0px;
-	   text-align: top;
-	   background-color:#ffffff
-	}
-	
-	img:hover {
-	  opacity: 1;
-	}
-	
-	</style>
-	
-	<!-- <link rel="stylesheet" href="styles.css"> -->
-	<div class ="navbar"></div>
-	<ul>
+	<body>
+	    <a href="https://analytics.georgetown.edu/"><img src="https://ngpardeshi.georgetown.domains/ANLY 501 IMAGES/DSA.jpg" style="width:600px;height:200px;" /> 
+			<img src="https://ngpardeshi.georgetown.domains/ANLY 501 IMAGES/GU_Background.png" style="width:700px;height:200px;" align="right">
+		 </a> 
+	<ul class ="header">
 		<!-- link back to homepage -->
 		<li><a href="../index.html">About me</a></li>
 		
@@ -179,18 +24,17 @@
 		
 			<div class="dropdown-content">
 			<a href="../pages/NaiveBayesRPage.html" >Naive Bayes in R</a>
-			<a href="../pages/NaiveBayesPyPage.html" >Naive Bayes in Python</a>
+			<a href="../pages/NBinPy_quarto.html" >Naive Bayes in Python</a>
 			</div>
 		</li>
 		<li><a href="../pages/Clustering.html">Clustering</a></li>
-		<li><a href="../pages/xyz.html">ARM and Networking</a></li>
+		<li><a href="../pages/ARM.html">ARM and Networking</a></li>
 		<li><a href="../pages/DT.html">Decision Trees</a></li>
 		<!-- <li><a href="../pages/xyz.html">Naive Bayes</a></li> -->
 		<li><a href="../pages/SVM.html">SVM</a></li>
 		<li><a href="../pages/xyz.html">Conclusions</a></li>
 		
 	</ul>
-
 	<div class="content">
 	<div class="w3-container w3-border city" id="Naive Bayes" >
 	<h1><center><b>Naive Bayes</b></center></h1>
@@ -232,7 +76,7 @@
 	<p><center><img alt="NBR1.png" height="400px" src="NBR1.png" width="500px" /</center></p>
 	
 	<h3><b>Conclusion</b></h3>
-	<p>The intention was to perform naive bayes to help predict the income class of a person given the different features. The accuracy of the model (83%) is good in predicting the price type group. According to the above graph, the key features to predict the income group are Average Price and Total Stock. It makes sense that the variable Price and Stock have a significant impact on Price Type.  </p>
+	<p>The intention was to perform naive bayes to help predict the Price Type of the product given the different features. The accuracy of the model (83%) is good in predicting the price type group. According to the above graph, the key features to predict the income group are Average Price and Total Stock. It makes sense that the variable Price and Stock have a significant impact on Price Type.  </p>
 	
 	</div>
 	

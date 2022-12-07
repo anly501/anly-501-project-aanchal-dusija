@@ -1,144 +1,13 @@
 <HTML>
 	<head>
-	<body style="background-color:#F6F5F5;">
-	
-	<style>
-	
-	body {
-		font-family: verdana;
-		background-color : #131111 ;
-		position : relative
-		style : #232435;
-	
-	}
-	
-	
-	.navbar{
-		top:0;
-		position: fixed;
-		width : 100%;
-		
-	}
-	
-	.topnav {
-	  overflow: hidden;
-	  background-color: #1F1A40;
-	}
-	
-	.topnav a {
-	  float: left;
-	  color: #BBD8F2;
-	  text-align: center;
-	  padding: 12px 14px;
-	  text-decoration: none;
-	  font-size: 17px;
-	}
-	
-	.topnav a:hover {
-	  background-color: #111314;
-	  color: black;
-	}
-	
-	.topnav a.active {
-	  background-color: #FFFFFF;
-	  color: white;
-	}
-	
-	.headerLogo{
-	  top:200px;
-	  height:250px;
-	  width:200px;
-	  line-height:200px;
-	
-	  overflow:hidden;
-	 
-	  /* <!-- top:200px; height:900px; width:1450px; line-height:500px --> */
-	}
-	.center {
-	  display: block;
-	  margin-left: auto;
-	  margin-right: auto;
-	  width: 100%;
-	}
-	
-	h1 {text-align: left;}
-	p {text-align: left;}
-	div {text-align: left;}
-	
-	
-	ul {
-		list-style-type: none;
-		margin: 0;
-		padding: 0;
-		overflow: hidden;
-		background-color: #004d99;
-		max-width:1500px;
-	}
-	
-	li {
-		float: left;
-	}
-	
-	li a, .dropbtn {
-		display: inline-block;
-		color: white;
-		text-align: center;
-		padding: 14px 16px;
-		text-decoration: none;
-	}
-	
-	li a:hover, .dropdown:hover .dropbtn {
-		background-color: #004d99;
-	}
-	
-	li.dropdown {
-		display: inline-block;
-	}
-	
-	.dropdown-content {
-		display: none;
-		position: absolute;
-		background-color: white;
-		min-width: 160px;
-		
-		
-	}
-	
-	.dropdown-content a {
-		color: black;
-		padding: 12px 16px;
-		text-decoration: none;
-		display: block;
-		text-align: left;
-		
-	}
-	
-	
-	
-	.dropdown:hover .dropdown-content {
-		display: block;
-		opacity: 1;
-	}
-	td {
-		padding: 5px;
-		text-align: left;
-		width: 500px;
-	}
-	
-	tr{
-	   padding: 0px;
-	   text-align: top;
-	   background-color:#ffffff
-	}
-	
-	img:hover {
-	  opacity: 1;
-	}
-	
-	</style>
-	
-	<div class ="navbar"></div>
-	<ul>
+		<link rel="stylesheet" href="../styles.css">
+	  </head>
+
+	<body>
+	    <a href="https://analytics.georgetown.edu/"><img src="https://ngpardeshi.georgetown.domains/ANLY 501 IMAGES/DSA.jpg" style="width:600px;height:200px;" /> 
+			<img src="https://ngpardeshi.georgetown.domains/ANLY 501 IMAGES/GU_Background.png" style="width:700px;height:200px;" align="right">
+		 </a> 
+	<ul class ="header">
 		<!-- link back to homepage -->
 		<li><a href="../index.html">About me</a></li>
 		
@@ -148,21 +17,21 @@
 		<li><a href="https://github.com/anly501/anly-501-project-aanchal-dusija">Data</a></li>
 		<li><a href="https://github.com/anly501/anly-501-project-aanchal-dusija">Code</a></li>
 		<li><a href="../pages/DataCleaning.html">Data Cleaning</a></li>
-		<li><a href="../pages/Exploring Data.html">Exploring Data</a></li>
+		<li><a href="../pages/Data Viz.html">Exploring Data</a></li>
 		<li class="dropdown">
 			<a href="javascript:void(0)" class="dropbtn">Naive Bayes</a>
 		
 			<div class="dropdown-content">
-			<a href="../pages/NaiveBayesRPage.html" >Naive Bayes in R</a>
-			<a href="../pages/NaiveBayesPyPage.html" >Naive Bayes in Python</a>
+			<a href="../pages/NBinR.html" >Naive Bayes in R</a>
+			<a href="../pages/NBinPy_quarto.html" >Naive Bayes in Python</a>
 			</div>
 		</li>
 		<li><a href="../pages/Clustering.html">Clustering</a></li>
-		<li><a href="../pages/xyz.html">ARM and Networking</a></li>
+		<li><a href="../pages/ARM.html">ARM and Networking</a></li>
 		<li><a href="../pages/DT.html">Decision Trees</a></li>
 		<!-- <li><a href="../pages/xyz.html">Naive Bayes</a></li> -->
 		<li><a href="../pages/SVM.html">SVM</a></li>
-		<li><a href="../pages/xyz.html">Conclusions</a></li>
+		<li><a href="../pages/Conclusion.html">Conclusions</a></li>
 		
 	</ul>
 
@@ -174,18 +43,29 @@
     
     
     <div id="introduction" class="section level1">
-    <h1 style= color:black>Introduction</h1>
-    <p>Using Data Science in the fashion industry. 
+    <h1 style= color:black>Using Data Science in the E-commerce Retail Industry</h1>
+    <p>E-commerce is the buying and selling of goods and services through the internet. It is one of the booming industries in fashion and apparel. E-commerce has played an important role in the fashion and apparel industry. The statistics, trends, and strategies are shaping online sales. E-commerce allows customers to choose a product or service they want from any supplier anywhere in the world right from their fingertips.
+	<p>The global fashion industry is continuously moving towards a decisive phase of digital adoption by the mainstream consumer, with online sales being projected to grow rapidly, especially in emerging markets. The ease of use of various digital instruments and content has amended the consumer purchase model from a traditional one to a more complex one across both offline and online mediums. Regardless of the chosen medium, consumers expect a consistent brand experience at all times. As such, it is essential that brands adopt omnichannel retailing in their business model, which allows retailers to understand and leverage the interconnectivity between physical and digital mediums.</p>
+	<p>In many markets, consumers look to online platforms as their first point of reference, as they offer a wider variety of products, and generally provide superior customer relevance and convenience, including insight-driven marketing to seamless customer care and logistics. Due to the numerous opportunities which eCommerce provides to the fashion industry, companies are becoming increasingly able to expand into untapped markets, increase their customer base, and ultimately increase revenues.</p>
+	 <p></p>Every time you use your mouse to make a purchase in today's world of data from numerous sources, a data trail is recorded and kept and will later be used by shops to entice you to make other purchases. For instance, if you are a customer looking to purchase a new phone, mobile websites or apps may have information about the products you have viewed, Google may know the products you have searched for, and GSMArena (a well-known website for smartphone reviews) may be aware of the mobile phones you have read reviews on. Additionally, you tweeted or posted updates on Facebook with these reviews. E-commerce enterprises may learn what customers want and when they want it by organizing millions of Tweets, Facebook likes Instagram photos and Pinterest photos. Data science includes the process of gathering, collecting, sorting, and analyzing data in order to generate actionable insights. Professionals with this title perform this relatively new type of work in the subject of data science.<br> <br> 
+     The past does not repeat itself, but it rhymes.- said Mark Twain <br> <br>
 
-      E-commerce systems for many large fashion firms produce a ton of data that data scientists can use. To comprehend the needs of the customer and analyze their behavior, we apply data science. This is essential for the fashion sector since firms may boost sales with better services that anticipate customer wants and assist clients in finding what they are looking for. <br> <br> 
-     
-      <img src="https://image.ibb.co/np9Q2c/image10.png" width="500" height="333"> <br> <br>
+		<img src="https://cdn.searchenginejournal.com/wp-content/uploads/2020/04/how-ecommerce-companies-can-care-for-their-customers-5eb56dfe6c64e-1520x800.png" width="600" height="533" class="center"> <br> <br>
+	
+      <p>Data science is also used to anticipate a product's lifespan on a website and inform clients of how likely it is that the items will run out soon. This aids the company in forecasting, which is essential for any business and involves determining how many outfits to make and send to a specific market. Big fashion companies will have information on their sales both online and in physical locations, and this information may be utilized to forecast product demand, calculate stock requirements, and set prices. Data Science in eCommerce assists businesses in providing a richer understanding of their customers by capturing and integrating information on their web behavior, events in their lives, what led to the purchase of a product or service, how customers interact with different channels, and so on.
+	  <p>These trends show the rising boom for the e-commerce industry and data science holds the promise of enhancing the shopping behavior of customers that can provide e-commerce businesses with an improved marketing mix and enhanced profitability. </p>
+	  
+	  Some data trends observed in the e-commerce industry are: </p>
+	  <li> 60% of people research and engage with brands on various channels like mobile, social media, in-store, websites, etc.</li> 
+	  <li> People who search for a product using different channels spend 1/3rd more than people who do not.</li>
+	  <!-- <li> 43% of retail sales in US are inclined towards the web.</li> -->
+	  <li> A survey by eCommera found that only 23% of UK retailers can make sense of data to take informed decisions.</li>
+	  <li> 50% of retailers in UK consider the shortage of business intelligence tools as the cause to harness the power of data science whilst only 16% are confident about their analytics solutions.</li>
+
+	   
+	  <img src="https://www.cloudtalk.io/wp-content/uploads/2021/12/Article-202104-eCommerceBenefits-2x-1024x538.png" width="500" height="550" class="center"> <br> <br>
     
-      Data science is also used to anticipate a product's lifespan on a website and inform clients of how likely it is that the items will run out soon. This aids the company in forecasting, which is essential for any business and involves determining how many outfits to make and send to a specific market. Big fashion companies will have information on their sales both online and in physical locations, and this information may be utilized to forecast product demand, calculate stock requirements, and set prices.  <br> <br>
-    
-      <img src="https://th.bing.com/th/id/OIP.ZLCgyHJqFvY9P3U4yhGjPgHaDu?pid=ImgDet&rs=1" width="500" height="333"> <br> <br>
-    
-      It may also forecast a customer's apparel sizes for numerous well-known brands: Since most products are returned due to fit, it is highly helpful to build a model that can estimate what size you should be for a specific brand using data on people's measurements and the sizes they wear in each. With advancements in data analytics and machine learning, fashion brands have become more aware of the value of utilizing AI based software to create efficient fashion design, merchandising and marketing strategies. <br> <br>
+      It may also forecast a customer's apparel sizes for numerous well-known brands: Since most products are returned due to fit, it is highly helpful to build a model that can estimate what size you should be for a specific brand using data on people's measurements and the sizes they wear in each. With advancements in data analytics and machine learning, fashion brands have become more aware of the value of utilizing AI-based software to create efficient fashion design, merchandising, and marketing strategies. <br> <br>
     
       <h1 style="font-size:20px;"> The goal of the portfolio is to provide answers to the following questions: </h1>
       1.	What is the color preference for customers in apparel with changing seasons? <br> <br>
@@ -201,3 +81,5 @@
       
       </p>
     </div>
+</body>
+</html>

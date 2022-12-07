@@ -1,0 +1,1209 @@
+<HTML>
+	<head>
+		<link rel="stylesheet" href="../styles.css">
+	  </head>
+
+	<body>
+	    <a href="https://analytics.georgetown.edu/"><img src="https://ngpardeshi.georgetown.domains/ANLY 501 IMAGES/DSA.jpg" style="width:600px;height:200px;" /> 
+			<img src="https://ngpardeshi.georgetown.domains/ANLY 501 IMAGES/GU_Background.png" style="width:700px;height:200px;" align="right">
+		 </a> 
+	<ul class ="header">
+		<!-- link back to homepage -->
+		<li><a href="../index.html">About me</a></li>
+		
+		<!-- tab without dropdown  -->
+		<li><a href="../pages/introduction.html">Introduction</a></li>
+		<li><a href="../pages/DataGathering.html">Data Gathering</a></li>
+		<li><a href="https://github.com/anly501/anly-501-project-aanchal-dusija">Data</a></li>
+		<li><a href="https://github.com/anly501/anly-501-project-aanchal-dusija">Code</a></li>
+		<li><a href="../pages/DataCleaning.html">Data Cleaning</a></li>
+		<li><a href="../pages/Data Viz.html">Exploring Data</a></li>
+		<li class="dropdown">
+			<a href="javascript:void(0)" class="dropbtn">Naive Bayes</a>
+		
+			<div class="dropdown-content">
+			<a href="../pages/NBinR.html" >Naive Bayes in R</a>
+			<a href="../pages/NBinPy_quarto.html" >Naive Bayes in Python</a>
+			</div>
+		</li>
+		<li><a href="../pages/Clustering.html">Clustering</a></li>
+		<li><a href="../pages/ARM.html">ARM and Networking</a></li>
+		<li><a href="../pages/DT.html">Decision Trees</a></li>
+		<!-- <li><a href="../pages/xyz.html">Naive Bayes</a></li> -->
+		<li><a href="../pages/SVM.html">SVM</a></li>
+		<li><a href="../pages/Conclusion.html">Conclusions</a></li>
+		
+	</ul>
+  
+  <!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.246">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>ARM and Network Analysis For Record Data</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="ARM_files/libs/clipboard/clipboard.min.js"></script>
+<script src="ARM_files/libs/quarto-html/quarto.js"></script>
+<script src="ARM_files/libs/quarto-html/popper.min.js"></script>
+<script src="ARM_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="ARM_files/libs/quarto-html/anchor.min.js"></script>
+<link href="ARM_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="ARM_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="ARM_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="ARM_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="ARM_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+
+
+</head>
+
+<body class="fullcontent">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">ARM and Network Analysis For Record Data</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="loading-the-libraries" class="level1">
+<h1>Loading the Libraries</h1>
+<div class="cell" data-execution_count="15">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> apyori <span class="im">import</span> apriori</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> networkx <span class="im">as</span> nx </span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> netgraph</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> plotly.graph_objects <span class="im">as</span> go</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>sns.set_theme(style<span class="op">=</span><span class="st">"whitegrid"</span>, palette<span class="op">=</span><span class="st">'Set2'</span>)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> warnings</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>warnings.filterwarnings(<span class="st">'ignore'</span>)</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>matplotlib inline</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="read-the-data" class="level1">
+<h1>Read the data</h1>
+<div class="cell" data-execution_count="16">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">'macy_mw.csv'</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>df.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display" data-execution_count="16">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Brand</th>
+      <th>Category</th>
+      <th>Color0</th>
+      <th>Color1</th>
+      <th>Color2</th>
+      <th>Color3</th>
+      <th>Color4</th>
+      <th>Color5</th>
+      <th>Rating</th>
+      <th>URL</th>
+      <th>Average_Price</th>
+      <th>C0_stock</th>
+      <th>C1_stock</th>
+      <th>C2_stock</th>
+      <th>C3_stock</th>
+      <th>C4_stock</th>
+      <th>C5_stock</th>
+      <th>Total_stock</th>
+      <th>Gender</th>
+      <th>Price_type</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Camper</td>
+      <td>Shoes</td>
+      <td>Multicolor</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>5.0000</td>
+      <td>https://www.macys.com/shop/product/camper-mens...</td>
+      <td>NaN</td>
+      <td>15</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>15</td>
+      <td>Men</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Timberland</td>
+      <td>Shoes</td>
+      <td>Black</td>
+      <td>Dark Brown</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>4.5767</td>
+      <td>https://www.macys.com/shop/product/timberland-...</td>
+      <td>89.95</td>
+      <td>66</td>
+      <td>66</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>132</td>
+      <td>Men</td>
+      <td>Reasonable</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Weatherproof Vintage</td>
+      <td>Men</td>
+      <td>Black</td>
+      <td>Rosin</td>
+      <td>Navy</td>
+      <td>Port</td>
+      <td>Pumpkin</td>
+      <td>NaN</td>
+      <td>0.0000</td>
+      <td>https://www.macys.com/shop/product/weatherproo...</td>
+      <td>49.00</td>
+      <td>10</td>
+      <td>10</td>
+      <td>10</td>
+      <td>10</td>
+      <td>10</td>
+      <td>0</td>
+      <td>50</td>
+      <td>Men</td>
+      <td>Reasonable</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Michael Kors</td>
+      <td>Casual Button-Down Shirts</td>
+      <td>Black</td>
+      <td>White</td>
+      <td>Dark Blue</td>
+      <td>Alloy Gray</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>4.5116</td>
+      <td>https://www.macys.com/shop/product/michael-kor...</td>
+      <td>62.65</td>
+      <td>10</td>
+      <td>10</td>
+      <td>10</td>
+      <td>10</td>
+      <td>0</td>
+      <td>0</td>
+      <td>40</td>
+      <td>Men</td>
+      <td>Reasonable</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Tommy Hilfiger</td>
+      <td>Blazers &amp; Sport Coats</td>
+      <td>Brown</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0.0000</td>
+      <td>https://www.macys.com/shop/product/tommy-hilfi...</td>
+      <td>139.99</td>
+      <td>91</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>91</td>
+      <td>Men</td>
+      <td>Expensive</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+</section>
+<section id="drop-na-values-in-all-columns" class="level1">
+<h1>Drop NA values in all columns</h1>
+<div class="cell" data-execution_count="17">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>df.dropna(inplace<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>df.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display" data-execution_count="17">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Brand</th>
+      <th>Category</th>
+      <th>Color0</th>
+      <th>Color1</th>
+      <th>Color2</th>
+      <th>Color3</th>
+      <th>Color4</th>
+      <th>Color5</th>
+      <th>Rating</th>
+      <th>URL</th>
+      <th>Average_Price</th>
+      <th>C0_stock</th>
+      <th>C1_stock</th>
+      <th>C2_stock</th>
+      <th>C3_stock</th>
+      <th>C4_stock</th>
+      <th>C5_stock</th>
+      <th>Total_stock</th>
+      <th>Gender</th>
+      <th>Price_type</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>6</th>
+      <td>Lauren Ralph Lauren</td>
+      <td>Blazers &amp; Sport Coats</td>
+      <td>Black/grey</td>
+      <td>Light Blue</td>
+      <td>Navy</td>
+      <td>Forest Green</td>
+      <td>Wine/black</td>
+      <td>Oatmeal</td>
+      <td>0.0000</td>
+      <td>https://www.macys.com/shop/product/lauren-ralp...</td>
+      <td>139.99</td>
+      <td>136</td>
+      <td>129</td>
+      <td>190</td>
+      <td>138</td>
+      <td>190</td>
+      <td>155</td>
+      <td>938</td>
+      <td>Men</td>
+      <td>Expensive</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>Haggar</td>
+      <td>Pants</td>
+      <td>Black</td>
+      <td>Sand</td>
+      <td>Med Khaki</td>
+      <td>Dark Grey</td>
+      <td>Dark Navy</td>
+      <td>Heather Grey</td>
+      <td>4.4198</td>
+      <td>https://www.macys.com/shop/product/haggar-mens...</td>
+      <td>45.49</td>
+      <td>300</td>
+      <td>286</td>
+      <td>300</td>
+      <td>190</td>
+      <td>293</td>
+      <td>225</td>
+      <td>1594</td>
+      <td>Men</td>
+      <td>Reasonable</td>
+    </tr>
+    <tr>
+      <th>19</th>
+      <td>Calvin Klein</td>
+      <td>Coats &amp; Jackets</td>
+      <td>Black</td>
+      <td>New Navy</td>
+      <td>Iron</td>
+      <td>Deep Red</td>
+      <td>Lt Grey Heather</td>
+      <td>White</td>
+      <td>4.6235</td>
+      <td>https://www.macys.com/shop/product/calvin-klei...</td>
+      <td>55.99</td>
+      <td>21</td>
+      <td>21</td>
+      <td>21</td>
+      <td>21</td>
+      <td>21</td>
+      <td>21</td>
+      <td>141</td>
+      <td>Men</td>
+      <td>Reasonable</td>
+    </tr>
+    <tr>
+      <th>24</th>
+      <td>Van Heusen</td>
+      <td>Suits &amp; Tuxedos</td>
+      <td>Black</td>
+      <td>Dark Navy</td>
+      <td>Black Herringbone</td>
+      <td>Bright Navy Blue Solid</td>
+      <td>Black / White Tic</td>
+      <td>Medium Grey Sharkskin</td>
+      <td>3.9733</td>
+      <td>https://www.macys.com/shop/product/van-heusen-...</td>
+      <td>99.99</td>
+      <td>133</td>
+      <td>130</td>
+      <td>136</td>
+      <td>109</td>
+      <td>136</td>
+      <td>136</td>
+      <td>1048</td>
+      <td>Men</td>
+      <td>Reasonable</td>
+    </tr>
+    <tr>
+      <th>25</th>
+      <td>Nautica</td>
+      <td>Suits &amp; Tuxedos</td>
+      <td>Blue Solid</td>
+      <td>Charcoal solid</td>
+      <td>Navy Plaid</td>
+      <td>Blue plaid</td>
+      <td>Light grey solid</td>
+      <td>Navy birdseye</td>
+      <td>3.5938</td>
+      <td>https://www.macys.com/shop/product/nautica-men...</td>
+      <td>99.99</td>
+      <td>3</td>
+      <td>28</td>
+      <td>48</td>
+      <td>4</td>
+      <td>47</td>
+      <td>17</td>
+      <td>147</td>
+      <td>Men</td>
+      <td>Reasonable</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+</section>
+<section id="drop-unnecessary-columns" class="level1">
+<h1>Drop unnecessary columns</h1>
+<div class="cell" data-execution_count="18">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>df.drop([<span class="st">'URL'</span>,<span class="st">'Color0'</span>,<span class="st">'Color1'</span>,<span class="st">'Color2'</span>,<span class="st">'Color3'</span>,<span class="st">'Color4'</span>,<span class="st">'Color5'</span>,<span class="st">'C0_stock'</span>,<span class="st">'C1_stock'</span>,<span class="st">'C2_stock'</span>,<span class="st">'C3_stock'</span>,<span class="st">'C4_stock'</span>,<span class="st">'C5_stock'</span>], axis<span class="op">=</span><span class="dv">1</span>, inplace<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display" data-execution_count="18">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Brand</th>
+      <th>Category</th>
+      <th>Rating</th>
+      <th>Average_Price</th>
+      <th>Total_stock</th>
+      <th>Gender</th>
+      <th>Price_type</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>6</th>
+      <td>Lauren Ralph Lauren</td>
+      <td>Blazers &amp; Sport Coats</td>
+      <td>0.0000</td>
+      <td>139.99</td>
+      <td>938</td>
+      <td>Men</td>
+      <td>Expensive</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>Haggar</td>
+      <td>Pants</td>
+      <td>4.4198</td>
+      <td>45.49</td>
+      <td>1594</td>
+      <td>Men</td>
+      <td>Reasonable</td>
+    </tr>
+    <tr>
+      <th>19</th>
+      <td>Calvin Klein</td>
+      <td>Coats &amp; Jackets</td>
+      <td>4.6235</td>
+      <td>55.99</td>
+      <td>141</td>
+      <td>Men</td>
+      <td>Reasonable</td>
+    </tr>
+    <tr>
+      <th>24</th>
+      <td>Van Heusen</td>
+      <td>Suits &amp; Tuxedos</td>
+      <td>3.9733</td>
+      <td>99.99</td>
+      <td>1048</td>
+      <td>Men</td>
+      <td>Reasonable</td>
+    </tr>
+    <tr>
+      <th>25</th>
+      <td>Nautica</td>
+      <td>Suits &amp; Tuxedos</td>
+      <td>3.5938</td>
+      <td>99.99</td>
+      <td>147</td>
+      <td>Men</td>
+      <td>Reasonable</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>1119</th>
+      <td>Charter Club</td>
+      <td>Sweaters</td>
+      <td>4.6471</td>
+      <td>36.48</td>
+      <td>104</td>
+      <td>Women</td>
+      <td>Reasonable</td>
+    </tr>
+    <tr>
+      <th>1166</th>
+      <td>NY Collection</td>
+      <td>Dresses</td>
+      <td>3.2821</td>
+      <td>22.12</td>
+      <td>45</td>
+      <td>Women</td>
+      <td>Reasonable</td>
+    </tr>
+    <tr>
+      <th>1247</th>
+      <td>Gloria Vanderbilt</td>
+      <td>Jeans</td>
+      <td>4.1499</td>
+      <td>25.20</td>
+      <td>711</td>
+      <td>Women</td>
+      <td>Reasonable</td>
+    </tr>
+    <tr>
+      <th>1296</th>
+      <td>Joseph A</td>
+      <td>General</td>
+      <td>5.0000</td>
+      <td>54.88</td>
+      <td>17</td>
+      <td>Women</td>
+      <td>Reasonable</td>
+    </tr>
+    <tr>
+      <th>1322</th>
+      <td>Charter Club</td>
+      <td>Sweaters</td>
+      <td>3.5143</td>
+      <td>72.97</td>
+      <td>47</td>
+      <td>Women</td>
+      <td>Reasonable</td>
+    </tr>
+  </tbody>
+</table>
+<p>81 rows × 7 columns</p>
+</div>
+</div>
+</div>
+<div class="cell" data-execution_count="19">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>df.reset_index(drop<span class="op">=</span><span class="va">True</span>, inplace<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display" data-execution_count="19">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Brand</th>
+      <th>Category</th>
+      <th>Rating</th>
+      <th>Average_Price</th>
+      <th>Total_stock</th>
+      <th>Gender</th>
+      <th>Price_type</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Lauren Ralph Lauren</td>
+      <td>Blazers &amp; Sport Coats</td>
+      <td>0.0000</td>
+      <td>139.99</td>
+      <td>938</td>
+      <td>Men</td>
+      <td>Expensive</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Haggar</td>
+      <td>Pants</td>
+      <td>4.4198</td>
+      <td>45.49</td>
+      <td>1594</td>
+      <td>Men</td>
+      <td>Reasonable</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Calvin Klein</td>
+      <td>Coats &amp; Jackets</td>
+      <td>4.6235</td>
+      <td>55.99</td>
+      <td>141</td>
+      <td>Men</td>
+      <td>Reasonable</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Van Heusen</td>
+      <td>Suits &amp; Tuxedos</td>
+      <td>3.9733</td>
+      <td>99.99</td>
+      <td>1048</td>
+      <td>Men</td>
+      <td>Reasonable</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Nautica</td>
+      <td>Suits &amp; Tuxedos</td>
+      <td>3.5938</td>
+      <td>99.99</td>
+      <td>147</td>
+      <td>Men</td>
+      <td>Reasonable</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>76</th>
+      <td>Charter Club</td>
+      <td>Sweaters</td>
+      <td>4.6471</td>
+      <td>36.48</td>
+      <td>104</td>
+      <td>Women</td>
+      <td>Reasonable</td>
+    </tr>
+    <tr>
+      <th>77</th>
+      <td>NY Collection</td>
+      <td>Dresses</td>
+      <td>3.2821</td>
+      <td>22.12</td>
+      <td>45</td>
+      <td>Women</td>
+      <td>Reasonable</td>
+    </tr>
+    <tr>
+      <th>78</th>
+      <td>Gloria Vanderbilt</td>
+      <td>Jeans</td>
+      <td>4.1499</td>
+      <td>25.20</td>
+      <td>711</td>
+      <td>Women</td>
+      <td>Reasonable</td>
+    </tr>
+    <tr>
+      <th>79</th>
+      <td>Joseph A</td>
+      <td>General</td>
+      <td>5.0000</td>
+      <td>54.88</td>
+      <td>17</td>
+      <td>Women</td>
+      <td>Reasonable</td>
+    </tr>
+    <tr>
+      <th>80</th>
+      <td>Charter Club</td>
+      <td>Sweaters</td>
+      <td>3.5143</td>
+      <td>72.97</td>
+      <td>47</td>
+      <td>Women</td>
+      <td>Reasonable</td>
+    </tr>
+  </tbody>
+</table>
+<p>81 rows × 7 columns</p>
+</div>
+</div>
+</div>
+<div class="cell" data-execution_count="20">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(df)):</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> col <span class="kw">in</span> df.columns:</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>        df[col][i] <span class="op">=</span> col <span class="op">+</span> <span class="st">'_'</span> <span class="op">+</span> <span class="bu">str</span>(df[col][i])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell" data-execution_count="21">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>records <span class="op">=</span> []</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(df)):</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    records.append([<span class="bu">str</span>(df.values[i,j]) <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">0</span>, <span class="dv">7</span>)])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="association-rule-mining" class="level1">
+<h1>Association Rule Mining</h1>
+<ul>
+<li>At this critical juncture, the dependency on data for driving business decisions has increased to a great extent. Data Mining is one such method that helps in decision making. It is the process of deriving trends, patterns, and useful information from a massive amount of data. The data mining process of discovering the rules that govern associations and causal objects between sets of items is known as Association Rule Mining. It helps in discovering relationships between databases that seem to be independent thus developing connections between datasets.</li>
+<li>Association Rule Mining (ARM) is a technique for identifying frequent patterns, correlations, associations, or causal structures in data sets found in a variety of databases, including relational databases, transactional databases, and other types of data repositories.</li>
+<li>Since most machine learning algorithms work with numerical datasets, they are mathematical in nature. But, Association Rule Mining is appropriate for non-numeric, categorical data and requires a little more than simple counting.</li>
+<li>Given a set of transactions, the goal of association rule mining is to find the rules that allow us to predict the occurrence of a specific item based on the occurrences of the other items in the transaction.</li>
+<li>An association rule consists of two parts: an antecedent (if) and a consequent (then)</li>
+<li>An antecedent is something found in data, and a consequent is something located in conjunction with the antecedent.</li>
+</ul>
+</section>
+<section id="rule-evaluation-metrics" class="level1">
+<h1>Rule Evaluation Metrics:</h1>
+<ul>
+<li>Support(s): It is the number of transactions that include items from the {X} and {Y} parts of the rule as a percentage of total transactions. It can be represented in the form of a percentage of all transactions that shows how frequently a group of items occurs together. Support = σ(X+Y) ÷ total: It is a fraction of transactions that include both X and Y.</li>
+<li>Confidence(c): This ratio represents the total number of transactions of all of the items in {A} and {B} to the number of transactions of the items in {A}. Conf(X=&gt;Y) = Supp(X∪Y) ÷ Supp(X): It counts the number of times each item in Y appears in transactions that also include items in X.</li>
+<li>Lift(l): The lift of the rule X=&gt;Y is the confidence of the rule divided by the expected confidence. here, it is assumed that the itemsets X and Y are independent of one another. The expected confidence is calculated by dividing the confidence by the frequency of {Y}.</li>
+<li>Lift(X=&gt;Y) = Conf(X=&gt;Y) ÷ Supp(Y): Lift values near 1 indicate that X and Y almost always appear together as expected. Lift values greater than 1 indicate that they appear together more than expected, and lift values less than 1 indicate that they appear less than expected. Greater lift values indicate a more powerful association.</li>
+</ul>
+</section>
+<section id="algorithms-of-association-rule-mining" class="level1">
+<h1>Algorithms of Association Rule Mining:</h1>
+<ul>
+<li>Apriori Algorithm: It delivers by characteristic the foremost frequent individual things within the information and increasing them to larger and bigger item sets as long as those item sets seem ofttimes enough within the information. The common itemsets ensured by apriori also are accustomed make sure association rules that highlight trends within the information. It counts the support of item sets employing a breadth-first search strategy and a candidate generation perform that takes advantage of the downward closure property of support.</li>
+<li>Eclat Algorithm: Eclat denotes equivalence class transformation. The set intersection was supported by its depth-first search formula. Its applicable for each successive and parallel execution with spot-magnifying properties. This can be the associate formula for frequent pattern mining supported by the item set lattices depth-first search cross. It is a DFS cross of the prefix tree rather than a lattice. For stopping, the branch and a specific technique are used.</li>
+<li>FP-growth Algorithm: This algorithm is also called a recurring pattern. The FP growth formula is used for locating frequent item sets terribly dealings data but not for candidate generation. This was primarily designed to compress the database that provides frequent sets and then divides the compressed data into conditional database sets. This conditional database is associated with a frequent set. Each database then undergoes the process of data mining.The data source is compressed using the FP-tree data structure. This algorithm operates in two stages. These are as follows: FP-tree construction and Extract frequently used itemsets.</li>
+</ul>
+</section>
+<section id="applications" class="level1">
+<h1>Applications:</h1>
+<ul>
+<li>Market-Basket Analysis: In most supermarkets, data is collected using barcode scanners. This database is called the market basket database. It contains a large number of past transaction records. Every record contains the name of all the items each customer purchases in one transaction. From this data, the stores come to know the inclination and choices of items of the customers. And according to this information, they decide the store layout and optimize the cataloging of different items.</li>
+<li>Medical Diagnosis: Association rules in medical diagnosis can help physicians diagnose and treat patients. Diagnosis is a difficult process with many potential errors that can lead to unreliable results. You can use relational association rule mining to determine the likelihood of illness based on various factors and symptoms. This application can be further expanded using some learning techniques on the basis of symptoms and their relationships in accordance with diseases.</li>
+<li>Census Data: The concept of Association Rule Mining is also used in dealing with the massive amount of census data. If properly aligned, this information can be used in planning efficient public services and businesses.</li>
+</ul>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>association_rules <span class="op">=</span> apriori(records, min_support<span class="op">=</span><span class="fl">0.05</span>, min_confidence<span class="op">=</span><span class="fl">0.2</span>, min_lift<span class="op">=</span><span class="dv">3</span>, min_length<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>association_results <span class="op">=</span> <span class="bu">list</span>(association_rules)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell" data-execution_count="23">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> item <span class="kw">in</span> association_results:</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># first index of the inner list</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Contains base item and add item</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    pair <span class="op">=</span> item[<span class="dv">0</span>] </span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>    items <span class="op">=</span> [x <span class="cf">for</span> x <span class="kw">in</span> pair]</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Rule: "</span> <span class="op">+</span> items[<span class="dv">0</span>] <span class="op">+</span> <span class="st">" -&gt; "</span> <span class="op">+</span> items[<span class="dv">1</span>])</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>    <span class="co">#second index of the inner list</span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Support: "</span> <span class="op">+</span> <span class="bu">str</span>(item[<span class="dv">1</span>]))</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>    <span class="co">#third index of the list located at 0th</span></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>    <span class="co">#of the third index of the inner list</span></span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Confidence: "</span> <span class="op">+</span> <span class="bu">str</span>(item[<span class="dv">2</span>][<span class="dv">0</span>][<span class="dv">2</span>]))</span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Lift: "</span> <span class="op">+</span> <span class="bu">str</span>(item[<span class="dv">2</span>][<span class="dv">0</span>][<span class="dv">3</span>]))</span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"====================================="</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rule: Average_Price_99.99 -&gt; Category_Suits &amp; Tuxedos
+Support: 0.06172839506172839
+Confidence: 1.0
+Lift: 10.125
+=====================================
+Rule: Gender_Women -&gt; Brand_Charter Club
+Support: 0.08641975308641975
+Confidence: 1.0
+Lift: 3.0
+=====================================
+Rule: Category_Jeans -&gt; Brand_Levi's
+Support: 0.08641975308641975
+Confidence: 0.7
+Lift: 4.725
+=====================================
+Rule: Gender_Women -&gt; Category_Bras &amp; Bralettes
+Support: 0.06172839506172839
+Confidence: 1.0
+Lift: 3.0
+=====================================
+Rule: Category_Coats &amp; Jackets -&gt; Price_type_Expensive
+Support: 0.07407407407407407
+Confidence: 0.5
+Lift: 4.05
+=====================================
+Rule: Average_Price_99.99 -&gt; Gender_Men
+Support: 0.06172839506172839
+Confidence: 1.0
+Lift: 10.125
+=====================================
+Rule: Price_type_Reasonable -&gt; Average_Price_99.99
+Support: 0.06172839506172839
+Confidence: 1.0
+Lift: 13.5
+=====================================
+Rule: Gender_Women -&gt; Brand_Charter Club
+Support: 0.08641975308641975
+Confidence: 1.0
+Lift: 3.5217391304347827
+=====================================
+Rule: Gender_Men -&gt; Category_Jeans
+Support: 0.08641975308641975
+Confidence: 0.7
+Lift: 7.0875
+=====================================
+Rule: Price_type_Reasonable -&gt; Category_Jeans
+Support: 0.08641975308641975
+Confidence: 0.7
+Lift: 4.725
+=====================================
+Rule: Gender_Women -&gt; Category_Bras &amp; Bralettes
+Support: 0.06172839506172839
+Confidence: 1.0
+Lift: 3.5217391304347827
+=====================================
+Rule: Price_type_Reasonable -&gt; Average_Price_99.99
+Support: 0.06172839506172839
+Confidence: 1.0
+Lift: 13.5
+=====================================
+Rule: Price_type_Reasonable -&gt; Gender_Men
+Support: 0.08641975308641975
+Confidence: 0.7
+Lift: 7.0875
+=====================================</code></pre>
+</div>
+</div>
+</section>
+<section id="helper-functions" class="level1">
+<h1>Helper Functions</h1>
+<div class="cell" data-execution_count="24">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> reformat_results(results):</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    <span class="co">#CLEAN-UP RESULTS </span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    keep<span class="op">=</span>[]</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">0</span>,<span class="bu">len</span>(results)):</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">0</span>,<span class="bu">len</span>(<span class="bu">list</span>(results[i]))):</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>            <span class="co"># print(results)</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span>(j<span class="op">&gt;</span><span class="dv">1</span>):</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>                <span class="cf">for</span> k <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">0</span>,<span class="bu">len</span>(<span class="bu">list</span>(results[i][j]))):</span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>                    <span class="cf">if</span>(<span class="bu">len</span>(results[i][j][k][<span class="dv">0</span>])<span class="op">!=</span><span class="dv">0</span>):</span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>                        <span class="co">#print(len(results[i][j][k][0]),results[i][j][k][0])</span></span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>                        rhs<span class="op">=</span><span class="bu">list</span>(results[i][j][k][<span class="dv">0</span>])</span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>                        lhs<span class="op">=</span><span class="bu">list</span>(results[i][j][k][<span class="dv">1</span>])</span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>                        conf<span class="op">=</span><span class="bu">float</span>(results[i][j][k][<span class="dv">2</span>])</span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>                        lift<span class="op">=</span><span class="bu">float</span>(results[i][j][k][<span class="dv">3</span>])</span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a>                        keep.append([rhs,lhs,supp,conf,supp<span class="op">*</span>conf,lift])</span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a>                        <span class="co"># keep.append()</span></span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span>(j<span class="op">==</span><span class="dv">1</span>):</span>
+<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a>                supp<span class="op">=</span>results[i][j]</span>
+<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> pd.DataFrame(keep, columns <span class="op">=</span>[<span class="st">"rhs"</span>,<span class="st">"lhs"</span>,<span class="st">"supp"</span>,<span class="st">"conf"</span>,<span class="st">"supp x conf"</span>,<span class="st">"lift"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell" data-execution_count="25">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> convert_to_network(df):</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">#print(df)</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    <span class="co">#BUILD GRAPH</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>    G <span class="op">=</span> nx.DiGraph()  <span class="co"># DIRECTED</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> row <span class="kw">in</span> df.iterrows():</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>        <span class="co"># for column in df.columns:</span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>        lhs<span class="op">=</span><span class="st">"_"</span>.join(row[<span class="dv">1</span>][<span class="dv">0</span>])</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>        rhs<span class="op">=</span><span class="st">"_"</span>.join(row[<span class="dv">1</span>][<span class="dv">1</span>])</span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>        conf<span class="op">=</span>row[<span class="dv">1</span>][<span class="dv">3</span>]<span class="op">;</span> <span class="co">#print(conf)</span></span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span>(lhs <span class="kw">not</span> <span class="kw">in</span> G.nodes): </span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>            G.add_node(lhs)</span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span>(rhs <span class="kw">not</span> <span class="kw">in</span> G.nodes): </span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>            G.add_node(rhs)</span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>        edge<span class="op">=</span>(lhs,rhs)</span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> edge <span class="kw">not</span> <span class="kw">in</span> G.edges:</span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>            G.add_edge(lhs, rhs, weight<span class="op">=</span>conf)</span>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a>    <span class="co"># print(G.nodes)</span></span>
+<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a>    <span class="co"># print(G.edges)</span></span>
+<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> G</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell" data-execution_count="26">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> plot_network(G):</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">#SPECIFIY X-Y POSITIONS FOR PLOTTING</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    pos<span class="op">=</span>nx.random_layout(G)</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>    <span class="co">#GENERATE PLOT</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>    fig, ax <span class="op">=</span> plt.subplots()</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>    fig.set_size_inches(<span class="dv">45</span>, <span class="dv">45</span>)</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>    <span class="co">#assign colors based on attributes</span></span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>    weights_e   <span class="op">=</span> [G[u][v][<span class="st">'weight'</span>] <span class="cf">for</span> u,v <span class="kw">in</span> G.edges()]</span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>    <span class="co">#SAMPLE CMAP FOR COLORS </span></span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>    cmap<span class="op">=</span>plt.cm.get_cmap(<span class="st">'Blues'</span>)</span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>    colors_e    <span class="op">=</span> [cmap(G[u][v][<span class="st">'weight'</span>]<span class="op">*</span><span class="dv">10</span>) <span class="cf">for</span> u,v <span class="kw">in</span> G.edges()]</span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>    <span class="co">#PLOT</span></span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a>    nx.draw(</span>
+<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a>    G,</span>
+<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a>    node_color<span class="op">=</span><span class="st">'crimson'</span>,</span>
+<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a>    edgecolors<span class="op">=</span><span class="st">"black"</span>,</span>
+<span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a>    edge_color<span class="op">=</span>colors_e,</span>
+<span id="cb13-22"><a href="#cb13-22" aria-hidden="true" tabindex="-1"></a>    node_size<span class="op">=</span><span class="dv">7000</span>,</span>
+<span id="cb13-23"><a href="#cb13-23" aria-hidden="true" tabindex="-1"></a>    linewidths<span class="op">=</span><span class="dv">2</span>,</span>
+<span id="cb13-24"><a href="#cb13-24" aria-hidden="true" tabindex="-1"></a>    font_size<span class="op">=</span><span class="dv">12</span>,</span>
+<span id="cb13-25"><a href="#cb13-25" aria-hidden="true" tabindex="-1"></a>    font_color<span class="op">=</span><span class="st">"black"</span>,</span>
+<span id="cb13-26"><a href="#cb13-26" aria-hidden="true" tabindex="-1"></a>    width<span class="op">=</span>weights_e,</span>
+<span id="cb13-27"><a href="#cb13-27" aria-hidden="true" tabindex="-1"></a>    with_labels<span class="op">=</span><span class="va">True</span>,</span>
+<span id="cb13-28"><a href="#cb13-28" aria-hidden="true" tabindex="-1"></a>    pos<span class="op">=</span>pos,</span>
+<span id="cb13-29"><a href="#cb13-29" aria-hidden="true" tabindex="-1"></a>    ax<span class="op">=</span>ax</span>
+<span id="cb13-30"><a href="#cb13-30" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb13-31"><a href="#cb13-31" aria-hidden="true" tabindex="-1"></a>    ax.set_title(<span class="st">"NetworkX Graph for Association Rules"</span>, fontsize<span class="op">=</span><span class="dv">50</span>)</span>
+<span id="cb13-32"><a href="#cb13-32" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb13-33"><a href="#cb13-33" aria-hidden="true" tabindex="-1"></a>    plt.show()</span>
+<span id="cb13-34"><a href="#cb13-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-35"><a href="#cb13-35" aria-hidden="true" tabindex="-1"></a><span class="co"># raise</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell" data-execution_count="27">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>result_df <span class="op">=</span> reformat_results(association_results)</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Results</span><span class="ch">\n</span><span class="st">"</span>,<span class="bu">len</span>(association_results))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Results
+ 13</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="28">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>G <span class="op">=</span> convert_to_network(result_df)</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>plot_network(G)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<p><img src="ARM_files/figure-html/cell-15-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+</section>
+<section id="conclusion" class="level1">
+<h1>Conclusion</h1>
+<ul>
+<li>There are a lot of interesting relations from the rules than can be seen from the network graph.</li>
+<li>Suppose the category is dresses, the price type is expensive, the gender is women and the rating is 4.0</li>
+<li>Suppose the gender is man, the category is sunglasses, price type is expensive.</li>
+<li>There are many more conclusions that can be drawn by seeing the graph.</li>
+</ul>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>
