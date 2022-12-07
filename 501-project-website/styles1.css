@@ -67,7 +67,7 @@ body {
 		float: left;
 	}
 	
-	li a, .dropbtn {
+	li a, .drpbtn {
 		display: inline-block;
 		color: white;
 		text-align: center;
@@ -75,15 +75,15 @@ body {
 		text-decoration: none;
 	}
 	
-	li a:hover, .dropdown:hover .dropbtn {
+	li a:hover, .drpdown:hover .drpbtn {
 		background-color: grey;
 	}
 	
-	li.dropdown {
+	li.drpdown {
 		display: inline-block;
 	}
 	
-	.dropdown-content {
+	.drpdown-content {
 		display: none;
 		position: static;
 		background-color: white;
@@ -92,7 +92,7 @@ body {
 		
 	}
 	
-	.dropdown-content a {
+	.drpdown-content a {
 		color: black;
 		padding: 12px 16px;
 		text-decoration: none;
@@ -103,7 +103,7 @@ body {
 	
 	
 	
-	.dropdown:hover .dropdown-content {
+	.drpdown:hover .drpdown-content {
 		display: block;
 		opacity: 1;
 	}
